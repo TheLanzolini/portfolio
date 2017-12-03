@@ -1,22 +1,22 @@
-const webpack = require("webpack");
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const autoprefixer = require("autoprefixer");
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 const browserConfig = {
-  entry: "./src/client/index.js",
+  entry: './src/client/index.js',
   output: {
     path: __dirname,
-    filename: "./public/bundle.js"
+    filename: './public/bundle.js'
   },
-  devtool: "cheap-module-source-map",
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: "file-loader",
+        loader: 'file-loader',
         options: {
-          name: "public/media/[name].[ext]",
-          publicPath: url => url.replace(/public/, "")
+          name: 'public/media/[name].[ext]',
+          publicPath: url => url.replace(/public/, '')
         }
       },
       {
@@ -24,11 +24,11 @@ const browserConfig = {
         use: ExtractTextPlugin.extract({
           use: [
             {
-              loader: "css-loader",
+              loader: 'css-loader',
               options: { importLoaders: 1 }
             },
             {
-              loader: "postcss-loader",
+              loader: 'postcss-loader',
               options: { plugins: [autoprefixer()] }
             }
           ]
@@ -37,35 +37,35 @@ const browserConfig = {
       {
         test: /js$/,
         exclude: /(node_modules)/,
-        loader: "babel-loader",
-        query: { presets: ["react-app"] }
+        loader: 'babel-loader',
+        query: { presets: ['react-app'] }
       }
     ]
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: "public/css/[name].css"
+      filename: 'public/css/[name].css'
     })
   ]
 };
 
 const serverConfig = {
-  entry: "./src/server/index.js",
-  target: "node",
+  entry: './src/server/index.js',
+  target: 'node',
   output: {
     path: __dirname,
-    filename: "server.js",
-    libraryTarget: "commonjs2"
+    filename: 'server.js',
+    libraryTarget: 'commonjs2'
   },
-  devtool: "cheap-module-source-map",
+  devtool: 'cheap-module-source-map',
   module: {
     rules: [
       {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: "file-loader",
+        loader: 'file-loader',
         options: {
-          name: "public/media/[name].[ext]",
-          publicPath: url => url.replace(/public/, ""),
+          name: 'public/media/[name].[ext]',
+          publicPath: url => url.replace(/public/, ''),
           emit: false
         }
       },
@@ -73,15 +73,15 @@ const serverConfig = {
         test: /\.css$/,
         use: [
           {
-            loader: "css-loader/locals"
+            loader: 'css-loader/locals'
           }
         ]
       },
       {
         test: /js$/,
         exclude: /(node_modules)/,
-        loader: "babel-loader",
-        query: { presets: ["react-app"] }
+        loader: 'babel-loader',
+        query: { presets: ['react-app'] }
       }
     ]
   }
