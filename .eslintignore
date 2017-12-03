@@ -1,0 +1,22 @@
+dist/
+node_modules/
+internals/
+bin/
+.idea/
+.vscode/
+build/
+.babelrc
+.gitignore
+.nvmrc
+.eslintrc.*
+
+webpack.*
+
+# Extensions to avoid
+*.json
+*.html
+*.css
+*.scss
+*.yml
+
+prod.server.js
