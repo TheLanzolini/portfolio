@@ -1,0 +1,9 @@
+.nav-link {
+  text-decoration: none;
+  color: black;
+  padding-right: 26px;
+  font-weight: lighter;
+}
+.nav-link.active {
+  font-weight: normal;
+}

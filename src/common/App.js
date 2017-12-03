@@ -1,22 +1,27 @@
 import React from 'react'
-import HardList from './HardList'
-import HardListAdder from './HardList/HardListAdder.js'
+import { renderRoutes } from 'react-router-config'
+import styled from 'styled-components'
+import Header from 'common/Header'
 
-if (!Object.entries) {
-  Object.entries = function( obj ) {
-    var ownProps = Object.keys( obj ), i = ownProps.length, resArray = new Array(i)
-    while (i--)
-      resArray[i] = [ownProps[i], obj[ownProps[i]]]
-    return resArray
+import './App.css'
+
+const AppContainer = styled.div`
+  width: 960px;
+  margin: auto;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+`
+
+class App extends React.Component {
+  render() {
+    return (
+      <AppContainer>
+        <Header />
+        {renderRoutes(this.props.route.routes)}
+      </AppContainer>
+    )
   }
 }
-
-const App = () => (
-  <div>
-    <div>I am an app</div>
-    <HardList />
-    <HardListAdder />
-  </div>
-)
 
 export default App

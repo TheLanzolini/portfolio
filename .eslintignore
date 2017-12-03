@@ -19,4 +19,4 @@ webpack.*
 *.scss
 *.yml
 
-prod.server.js
+server.js

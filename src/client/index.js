@@ -1,21 +1,25 @@
 import React from 'react'
 import { hydrate } from 'react-dom'
-import App from '../common/App.js'
+import BrowserRouter from 'react-router-dom/BrowserRouter'
+import { renderRoutes } from 'react-router-config'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from '../reducers'
+import Routes from '../Routes'
 
 const preloadedState = window.__PRELOADED_STATE__
 
-// Allow the passed state to be garbage-collected
+// Garbage Collect
 delete window.__PRELOADED_STATE__
 
 const store = createStore(reducers, preloadedState)
 
-
-
-hydrate(
+const AppRoot = () => (
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      {renderRoutes(Routes)}
+    </BrowserRouter>
   </Provider>
-  , document.getElementById('root'))
+)
+
+hydrate(<AppRoot />, document.getElementById('root'))
