@@ -4,8 +4,8 @@
   "description": "my portfolio",
   "main": "server.js",
   "scripts": {
-    "dev": "NODE_ENV=development webpack -w & NODE_ENV=development node server.js",
-    "start": "NODE_ENV=production webpack && NODE_ENV=production node server.js"
+    "dev": "NODE_ENV=development webpack -w & NODE_ENV=development node ./dist/server.js",
+    "start": "NODE_ENV=production webpack && NODE_ENV=production node ./dist/server.js"
   },
   "engines": {
     "node": "8.9.1",

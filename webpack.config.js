@@ -5,8 +5,8 @@ const autoprefixer = require('autoprefixer');
 const browserConfig = {
   entry: './src/client/index.js',
   output: {
-    path: __dirname,
-    filename: './public/bundle.js'
+    path: `${__dirname}/dist`,
+    filename: 'bundle.js'
   },
   devtool: 'cheap-module-source-map',
   module: {
@@ -15,8 +15,8 @@ const browserConfig = {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: 'file-loader',
         options: {
-          name: 'public/media/[name].[ext]',
-          publicPath: url => url.replace(/public/, '')
+          name: 'dist/media/[name].[ext]',
+          distPath: url => url.replace(/dist/, '')
         }
       },
       {
@@ -44,7 +44,7 @@ const browserConfig = {
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: 'public/css/[name].css'
+      filename: 'css/[name].css'
     })
   ]
 };
@@ -53,7 +53,7 @@ const serverConfig = {
   entry: './src/server/index.js',
   target: 'node',
   output: {
-    path: __dirname,
+    path: `${__dirname}/dist`,
     filename: 'server.js',
     libraryTarget: 'commonjs2'
   },
@@ -64,8 +64,8 @@ const serverConfig = {
         test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: 'file-loader',
         options: {
-          name: 'public/media/[name].[ext]',
-          publicPath: url => url.replace(/public/, ''),
+          name: 'dist/media/[name].[ext]',
+          distPath: url => url.replace(/dist/, ''),
           emit: false
         }
       },

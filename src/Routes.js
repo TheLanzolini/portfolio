@@ -1,7 +1,11 @@
+import React from 'react'
 import App from 'common/App'
 import Home from 'pages/Home'
-import About from 'pages/About'
-import Contact from 'pages/Contact'
+import Split from 'common/Split'
+
+// CODE SPLITTING!!
+const About = () => (<Split load={import('pages/About')} />)
+const Contact = () => (<Split load={import('pages/Contact')} />)
 
 const routes = [
   { component: App,
