@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { hardListToggle, hardListRemove } from '../../reducers/HardListReducer'
 import styled from 'styled-components'
+import { global_box_shadow } from 'constants/styled'
 
 // This component only lists and interacts with HardList items
 // they are added with another component
@@ -13,7 +14,7 @@ const HardList = (props) => {
   const HardListContainer = styled.div`
     width: 250px;
     padding: 8px;
-    box-shadow: 0px 0px 1px 1px #cdcdcd;
+    box-shadow: ${global_box_shadow};
     margin: 12px 0;
   `
   const HardListTitle = styled.h3`

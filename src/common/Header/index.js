@@ -8,6 +8,7 @@ const HeaderContainer = styled.header`
   font-size: 22px;
   line-height: 3;
   border-bottom: 1px solid black;
+  margin-bottom: 12px;
 `
 
 const links = [

@@ -2,6 +2,7 @@ import React from 'react'
 import { hardListAdd } from '../../reducers/HardListReducer'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { global_box_shadow } from 'constants/styled'
 
 const HardListInput = styled.input`
   border: none;
@@ -18,7 +19,7 @@ const HardListInput = styled.input`
 const HardListAdderContainer = styled.div`
   width: 250px;
   padding: 8px;
-  box-shadow: 0px 0px 1px 1px #cdcdcd;
+  box-shadow: ${global_box_shadow};
   margin: 12px 0;
   display: flex;
 `
