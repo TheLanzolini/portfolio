@@ -3,27 +3,31 @@ import WideSection from 'common/WideSection'
 import TextPanel from 'common/TextPanel'
 import styled from 'styled-components'
 import myface from './myface.jpeg'
-import Foldover from 'common/Foldover'
 
 const MyFace = styled.img`
-  width: 100%;
+  width: 66%;
+  border-radius: 100%;
+`
+
+const Caption = styled.p`
+  color: #9E9E9E;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
 `
 
 export default () => (
   <WideSection>
-    <TextPanel>
-      <Foldover orientation="top-left" />
+    <TextPanel color="white" backgroundColor="#FF9800">
       Alex Lanzoni
       <br />
       FE Web Developer
       <br />
       Gamer
-      <Foldover orientation="bottom-left" />
     </TextPanel>
     <TextPanel>
-      <Foldover orientation="top-right" />
       <MyFace src={myface} />
-      <Foldover orientation="bottom-right" />
+      <Caption>My smug face. Circa 2017.</Caption>
     </TextPanel>
   </WideSection>
 )
