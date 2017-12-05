@@ -1,5 +1,9 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 
 export default () => (
-  <div>About</div>
+  <div>
+    <Helmet title="About" />
+    <div>About</div>
+  </div>
 )

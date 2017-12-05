@@ -9,6 +9,7 @@ import { StaticRouter } from 'react-router'
 import { renderRoutes } from 'react-router-config'
 import Routes from '../Routes'
 import { ServerStyleSheet } from 'styled-components'
+import { Helmet } from 'react-helmet'
 
 const store = createStore(reducers)
 const state = store.getState()
@@ -28,17 +29,16 @@ app.get('*', (req, res) => {
       </Provider>
     )
   )
+  const helmet = Helmet.renderStatic()
   const styleTags = sheet.getStyleTags()
   res.send(`
       <!DOCTYPE html>
       <head>
-        <title>Universal React</title>
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
-        <link rel="stylesheet" href="/css/main.css">
-        <script src="/bundle.js" defer></script>
-        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
-        <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, width=device-width"/>
+        ${helmet.title.toString()}
+        ${helmet.meta.toString()}
+        ${helmet.link.toString()}
         ${styleTags}
+        <link rel="stylesheet" href="/css/main.css" />
       </head>
       <body>
         <script>
@@ -46,6 +46,7 @@ app.get('*', (req, res) => {
           // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
           window.__PRELOADED_STATE__ = ${JSON.stringify(state).replace(/</g, '\\u003c')}
         </script>
+        <script src="/bundle.js" async></script>
         <div id="root">${html}</div>
       </body>
     </html>

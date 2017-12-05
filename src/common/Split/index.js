@@ -5,7 +5,7 @@ class Split extends React.Component {
     this.cancelUpdate = false
     this.props.load.then(Component => {
       this.Component = Component
-      if (!this.cancelUpdate) {
+      if (!this.cancelUpdate && process.browser) {
         this.forceUpdate()
       }
     })

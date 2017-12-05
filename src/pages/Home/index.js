@@ -3,6 +3,7 @@ import WideSection from 'common/WideSection'
 import TextPanel from 'common/TextPanel'
 import styled from 'styled-components'
 import myface from './myface.jpeg'
+import { Helmet } from 'react-helmet'
 
 const MyFace = styled.img`
   width: 66%;
@@ -19,6 +20,7 @@ const Caption = styled.p`
 
 export default () => (
   <WideSection>
+    <Helmet title="WAT" />
     <TextPanel color="white" backgroundColor="#FF9800">
       Alex Lanzoni
       <br />
