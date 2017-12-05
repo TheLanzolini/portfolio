@@ -1,5 +1,5 @@
 import React from 'react'
-import App from 'common/App'
+import App from './App'
 import Home from 'pages/Home'
 import Split from 'common/Split'
 

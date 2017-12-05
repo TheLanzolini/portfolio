@@ -36,6 +36,7 @@ app.get('*', (req, res) => {
         <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
         <link rel="stylesheet" href="/css/main.css">
         <script src="/bundle.js" defer></script>
+        <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
         <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, width=device-width"/>
         ${styleTags}
       </head>

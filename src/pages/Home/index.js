@@ -6,6 +6,7 @@ import myface from './myface.jpeg'
 
 const MyFace = styled.img`
   width: 66%;
+  height: 66%;
   border-radius: 100%;
 `
 
