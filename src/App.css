@@ -4,6 +4,9 @@ html {
 body {
   margin: 0;
 }
+a {
+  color: white;
+}
 * {
   -webkit-font-smoothing: antialiased;
   -mac-osx-font-smoothing: greyscale;

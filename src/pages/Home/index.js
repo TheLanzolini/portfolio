@@ -1,8 +1,8 @@
 import React from 'react'
 import WideSection from 'common/WideSection'
 import TextPanel from 'common/TextPanel'
-import styled from 'styled-components'
-import myface from './myface.jpeg'
+import styled, { keyframes } from 'styled-components'
+import myface from 'images/myface.jpeg'
 import { Helmet } from 'react-helmet'
 
 const MyFace = styled.img`
@@ -18,19 +18,79 @@ const Caption = styled.p`
   text-align: center;
 `
 
+const fadeInLeft = keyframes`
+  0% {
+    opacity: 0.0;
+    transform: translateX(-5%);
+  }
+  50% {
+    opacity: 0.0;
+    transform: translateX(-5%);
+  }
+  100% {
+    opacity: 1.0;
+    transform: translateX(0%);
+  }
+`
+
+const fadeInRight = keyframes`
+  0% {
+    opacity: 0.0;
+    transform: translateX(5%);
+  }
+  50% {
+    opacity: 0.0;
+    transform: translateX(5%);
+  }
+  100% {
+    opacity: 1.0;
+    transform: translateX(0%);
+  }
+`
+
+const fadeInTop = keyframes`
+  0% {
+    opacity: 0.0;
+    transform: translateY(-5%);
+  }
+  100% {
+    opacity: 1.0;
+    transform: translateY(0%);
+  }
+`
+
+const FadeInTop = styled.div`
+  animation: ${fadeInTop} 0.75s ease;
+`
+
+const TextFadeIn = styled.span`
+  animation: ${fadeInLeft} 0.75s ease;
+`
+
+const MyFaceFadeIn = styled.span`
+  animation ${fadeInRight} 0.75s ease;
+  text-align: center;
+`
+
 export default () => (
-  <WideSection>
-    <Helmet title="WAT" />
-    <TextPanel color="white" backgroundColor="#FF9800">
-      Alex Lanzoni
-      <br />
-      FE Web Developer
-      <br />
-      Gamer
-    </TextPanel>
-    <TextPanel>
-      <MyFace src={myface} />
-      <Caption>My smug face. Circa 2017.</Caption>
-    </TextPanel>
-  </WideSection>
+  <FadeInTop>
+    <WideSection>
+      <Helmet title="Home" />
+      <TextPanel color="white" backgroundColor="#FF9800">
+        <TextFadeIn>
+          Alex Lanzoni
+          <br />
+          FE Web Developer
+          <br />
+          and Gamer
+        </TextFadeIn>
+      </TextPanel>
+      <TextPanel>
+        <MyFaceFadeIn>
+          <MyFace src={myface} />
+          <Caption>My smug face. Circa 2017.</Caption>
+        </MyFaceFadeIn>
+      </TextPanel>
+    </WideSection>
+  </FadeInTop>
 )

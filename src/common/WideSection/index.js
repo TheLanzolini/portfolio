@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const WideSection = styled.div`
   width: 100%;
-  height: 480px;
+  height: 350px;
   box-shadow: ${global_box_shadow};
   display: flex;
   overflow: hidden;

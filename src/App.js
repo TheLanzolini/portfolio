@@ -20,7 +20,7 @@ class App extends React.Component {
       <AppContainer>
         <Helmet
           htmlAttributes={{ lang: 'en', amp: undefined }}
-          titleTemplate="%s | React App"
+          titleTemplate="Alex Lanzoni Portfolio | %s"
           titleAttributes={{ itemprop: 'name', lang: 'en' }}
           meta={[
             { name: 'description', content: 'Server side rendering example' },
