@@ -1,13 +1,15 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import WideSection from 'common/WideSection'
-import TextPanel from 'common/TextPanel'
+import Panel from 'common/Panel'
+import formal from 'images/formal.jpeg'
+import informal from 'images/informal.jpeg'
 
 export default () => (
   <div>
     <Helmet title="Contact" />
     <WideSection>
-      <TextPanel fontSize="28px" backgroundColor="#1E88E5" color="white">
+      <Panel fontSize="28px" backgroundColor="#1E88E5" color="white">
         <span>
           Formal
           <br />
@@ -18,10 +20,16 @@ export default () => (
           <br />
           860.682.4376
         </span>
-      </TextPanel>
+      </Panel>
+      <Panel>
+        <img src={formal} />
+      </Panel>
     </WideSection>
     <WideSection>
-      <TextPanel fontSize="28px" backgroundColor="#5E35B1" color="white">
+      <Panel>
+        <img src={informal} />
+      </Panel>
+      <Panel fontSize="28px" backgroundColor="#5E35B1" color="white">
         <span>
           Informal
           <br />
@@ -32,7 +40,7 @@ export default () => (
           <br />
           <a target="_blank" href="https://twitter.com/thelanzolini">@TheLanzolini</a>
         </span>
-      </TextPanel>
+      </Panel>
     </WideSection>
   </div>
 )

@@ -1,6 +1,6 @@
 import React from 'react'
 import WideSection from 'common/WideSection'
-import TextPanel from 'common/TextPanel'
+import Panel from 'common/Panel'
 import styled, { keyframes } from 'styled-components'
 import myface from 'images/myface.jpeg'
 import { Helmet } from 'react-helmet'
@@ -76,7 +76,7 @@ export default () => (
   <FadeInTop>
     <WideSection>
       <Helmet title="Home" />
-      <TextPanel color="white" backgroundColor="#FF9800">
+      <Panel color="white" backgroundColor="#FF9800">
         <TextFadeIn>
           Alex Lanzoni
           <br />
@@ -84,13 +84,13 @@ export default () => (
           <br />
           and Gamer
         </TextFadeIn>
-      </TextPanel>
-      <TextPanel>
+      </Panel>
+      <Panel>
         <MyFaceFadeIn>
           <MyFace src={myface} />
           <Caption>My smug face. Circa 2017.</Caption>
         </MyFaceFadeIn>
-      </TextPanel>
+      </Panel>
     </WideSection>
   </FadeInTop>
 )

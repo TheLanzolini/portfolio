@@ -13,8 +13,8 @@ const HeaderContainer = styled.header`
 
 const links = [
   { name: 'Home', to: '/' },
-  { name: 'About', to: '/about' },
   { name: 'Contact', to: '/contact' },
+  { name: 'About', to: '/about' },
 ]
 
 const Header = () => (
