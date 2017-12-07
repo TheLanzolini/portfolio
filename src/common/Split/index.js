@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class Split extends React.Component {
   componentWillMount() {
@@ -25,5 +26,8 @@ class Split extends React.Component {
   }
 }
 
+Split.propTypes = {
+  load: PropTypes.object.isRequired,
+}
 
 export default Split

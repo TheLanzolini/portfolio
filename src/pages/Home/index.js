@@ -1,9 +1,10 @@
 import React from 'react'
 import WideSection from 'common/WideSection'
 import Panel from 'common/Panel'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import myface from 'images/myface.jpeg'
 import { Helmet } from 'react-helmet'
+import { fadeInTop, fadeInLeftDelay, fadeInRightDelay } from 'common/Animation'
 
 const MyFace = styled.img`
   width: 66%;
@@ -18,57 +19,16 @@ const Caption = styled.p`
   text-align: center;
 `
 
-const fadeInLeft = keyframes`
-  0% {
-    opacity: 0.0;
-    transform: translateX(-5%);
-  }
-  50% {
-    opacity: 0.0;
-    transform: translateX(-5%);
-  }
-  100% {
-    opacity: 1.0;
-    transform: translateX(0%);
-  }
-`
-
-const fadeInRight = keyframes`
-  0% {
-    opacity: 0.0;
-    transform: translateX(5%);
-  }
-  50% {
-    opacity: 0.0;
-    transform: translateX(5%);
-  }
-  100% {
-    opacity: 1.0;
-    transform: translateX(0%);
-  }
-`
-
-const fadeInTop = keyframes`
-  0% {
-    opacity: 0.0;
-    transform: translateY(-5%);
-  }
-  100% {
-    opacity: 1.0;
-    transform: translateY(0%);
-  }
-`
-
 const FadeInTop = styled.div`
   animation: ${fadeInTop} 0.75s ease;
 `
 
 const TextFadeIn = styled.span`
-  animation: ${fadeInLeft} 0.75s ease;
+  animation: ${fadeInLeftDelay} 0.75s ease;
 `
 
 const MyFaceFadeIn = styled.span`
-  animation ${fadeInRight} 0.75s ease;
+  animation ${fadeInRightDelay} 0.75s ease;
   text-align: center;
 `
 
@@ -76,7 +36,7 @@ export default () => (
   <FadeInTop>
     <WideSection>
       <Helmet title="Home" />
-      <Panel color="white" backgroundColor="#FF9800">
+      <Panel color="white" backgroundcolor="#FF9800">
         <TextFadeIn>
           Alex Lanzoni
           <br />
