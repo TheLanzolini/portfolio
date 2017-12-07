@@ -12,12 +12,16 @@ const browserConfig = {
   module: {
     rules: [
       {
-        test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: 'file-loader',
         options: {
-          name: 'dist/media/[name].[ext]',
+          name: 'media/[name].[ext]',
           distPath: url => url.replace(/dist/, '')
         }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'raw-loader'
       },
       {
         test: /\.css$/,
@@ -61,13 +65,17 @@ const serverConfig = {
   module: {
     rules: [
       {
-        test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+        test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: 'file-loader',
         options: {
-          name: 'dist/media/[name].[ext]',
+          name: 'media/[name].[ext]',
           distPath: url => url.replace(/dist/, ''),
           emit: false
         }
+      },
+      {
+        test: /\.svg$/,
+        loader: 'raw-loader'
       },
       {
         test: /\.css$/,

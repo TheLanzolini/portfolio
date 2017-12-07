@@ -8,11 +8,11 @@ import { fadeInTop, fadeInTopDelay } from 'common/Animation'
 import styled from 'styled-components'
 
 const FadeInTop = styled.div`
-  animation: ${fadeInTop} 0.5s ease;
+  animation: ${fadeInTop} 0.25s ease;
 `
 
 const FadeInTopDelay = styled.div`
-  animation: ${fadeInTopDelay} 0.75s ease;
+  animation: ${fadeInTopDelay} 0.5s ease;
 `
 
 export default () => (
@@ -20,7 +20,7 @@ export default () => (
     <Helmet title="Contact" />
     <FadeInTop>
       <WideSection>
-        <Panel fontSize="28px" backgroundcolor="#1E88E5" color="white">
+        <Panel fontSize="28px" backgroundcolor="#1E88E5" color="white" padding="24px">
           <span>
             Formal
             <br />
@@ -42,7 +42,7 @@ export default () => (
         <Panel>
           <img src={informal} />
         </Panel>
-        <Panel fontSize="28px" backgroundcolor="#5E35B1" color="white">
+        <Panel fontSize="28px" backgroundcolor="#5E35B1" color="white" padding="24px">
           <span>
             Informal
             <br />
