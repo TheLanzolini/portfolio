@@ -20,10 +20,12 @@ class Skill extends ClickAway {
   render() {
     return (
       <div>
-        <div onClick={this.toggleShow}>skill</div>
-        {
-          this.state.showSkill && <div style={{ width: '200px', height: '200px', backgroundColor: 'blue' }}>MORE SKILL</div>
-        }
+        <div onClick={this.toggleShow}>
+          {this.props.target}
+        </div>
+        <div>
+          { this.state.showSkill && this.props.description }
+        </div>
       </div>
     )
   }
