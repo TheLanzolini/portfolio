@@ -12,17 +12,17 @@ const browserConfig = {
   module: {
     rules: [
       {
-        test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
+        test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: 'file-loader',
         options: {
           name: 'media/[name].[ext]',
           distPath: url => url.replace(/dist/, '')
         }
       },
-      {
-        test: /\.svg$/,
-        loader: 'raw-loader'
-      },
+      // {
+      //   test: /\.svg$/,
+      //   loader: 'raw-loader'
+      // },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
@@ -65,7 +65,7 @@ const serverConfig = {
   module: {
     rules: [
       {
-        test: [/\.gif$/, /\.jpe?g$/, /\.png$/],
+        test: [/\.svg$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
         loader: 'file-loader',
         options: {
           name: 'media/[name].[ext]',
@@ -73,10 +73,10 @@ const serverConfig = {
           emit: false
         }
       },
-      {
-        test: /\.svg$/,
-        loader: 'raw-loader'
-      },
+      // {
+      //   test: /\.svg$/,
+      //   loader: 'raw-loader'
+      // },
       {
         test: /\.css$/,
         use: [
