@@ -45,9 +45,10 @@ class Browser extends React.Component {
     super(props)
     this.state = { keyframe: 1 }
     this.switchKeyframe = this.switchKeyframe.bind(this)
-    setInterval(this.switchKeyframe, 750)
+    this.timeout = null
+    this.interval = setInterval(this.switchKeyframe, 750)
   }
-
+  
   switchKeyframe() {
     this.setState({ keyframe: this.state.keyframe === 1 ? 2 : 1 })
   }
@@ -57,7 +58,8 @@ class Browser extends React.Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.switchKeyframe)
+    clearTimeout(this.timeout)
+    clearInterval(this.interval)
   }
 
   render() {

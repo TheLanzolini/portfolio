@@ -6,6 +6,7 @@ import Split from 'common/Split'
 // CODE SPLITTING!!
 const About = () => (<Split load={import('pages/About')} />)
 const Contact = () => (<Split load={import('pages/Contact')} />)
+const Projects = () => (<Split load={import('pages/Projects')} />)
 
 const routes = [
   { component: App,
@@ -22,6 +23,9 @@ const routes = [
       },
       { path: '/home',
         component: Home,
+      },
+      { path: '/projects',
+        component: Projects,
       },
     ],
   },
