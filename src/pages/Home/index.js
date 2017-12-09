@@ -5,8 +5,9 @@ import styled from 'styled-components'
 import myface from 'images/myface.jpeg'
 import { Helmet } from 'react-helmet'
 import { fadeInTop, fadeInLeftDelay, fadeInRightDelay } from 'common/Animation'
-import MyHead from 'common/MyHead'
+// import MyHead from 'common/MyHead'
 import Skills from './Skills'
+import Browser from './Browser'
 
 const MyFace = styled.img`
   width: 66%;
@@ -58,6 +59,17 @@ const SkillText = styled.div`
   }
 `
 
+const BrowsersAndDevices = WideSection.extend`
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row wrap;
+`
+
+const BrowsersTitle = TitleSection.extend`
+  font-size: 40px;
+  margin-top: 0;
+`
+
 export default () => (
   <div>
     <FadeInTop>
@@ -89,8 +101,15 @@ export default () => (
         &nbsp;<a target="_blank" href="https://github.com/thelanzolini/portfolio">https://github.com/thelanzolini/portfolio</a>.
       </SkillText>
     </SkillSection>
-    <WideSection>
-      <MyHead />
-    </WideSection>
+    <BrowsersAndDevices>
+      <BrowsersTitle>Browsers and Responsive Design</BrowsersTitle>
+      {
+        (['chrome', 'firefox', 'edge', 'safari', 'ie']).map(browser => (<Browser key={browser} browser={browser} />))
+      }
+      <SkillText>
+        I have experience developing and supporting every major browser for Desktop and Handheld, including legacy IE.
+        I also have worked to make every website and app perform well and provide great user experience on handheld devices.
+      </SkillText>
+    </BrowsersAndDevices>
   </div>
 )

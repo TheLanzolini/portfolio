@@ -17,9 +17,9 @@ and then after that... implementing everything on [Google's PWA checklist](https
 Content Dev
 - [X] Home Page
   - [X] My smug face
-  - [ ] Skills
+  - [X] Skills
   - [ ] My Head Parallax
-  - [ ] Dancing Browsers
+  - [X] Dancing Browsers
   - [ ] Dancing Devices
 - [ ] Projects
   - [ ] Professional
@@ -29,3 +29,5 @@ Content Dev
 - [X] Contact
  - [X] Formal
  - [X] Informal
+- [ ] Footer
+- [ ] Fetching Data
