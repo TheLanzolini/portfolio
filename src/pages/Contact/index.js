@@ -15,6 +15,10 @@ const FadeInTopDelay = styled.div`
   animation: ${fadeInTopDelay} 0.5s ease;
 `
 
+const OverflowPanel = Panel.extend`
+  overflow: hidden;
+`
+
 export default () => (
   <div>
     <Helmet title="Contact" />
@@ -32,16 +36,16 @@ export default () => (
             860.682.4376
           </span>
         </Panel>
-        <Panel>
+        <OverflowPanel>
           <img src={formal} />
-        </Panel>
+        </OverflowPanel>
       </WideSection>
     </FadeInTop>
     <FadeInTopDelay>
       <WideSection>
-        <Panel>
+        <OverflowPanel>
           <img src={informal} />
-        </Panel>
+        </OverflowPanel>
         <Panel fontSize="28px" backgroundcolor="#5E35B1" color="white" padding="24px">
           <span>
             Informal
