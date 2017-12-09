@@ -2,6 +2,7 @@ import React from 'react'
 import { renderRoutes } from 'react-router-config'
 import styled from 'styled-components'
 import Header from 'common/Header'
+import Footer from 'common/Footer'
 import { Helmet } from 'react-helmet'
 
 import './App.css'
@@ -29,6 +30,7 @@ class App extends React.Component {
         />
         <Header />
         {renderRoutes(this.props.route.routes)}
+        <Footer />
       </AppContainer>
     )
   }
