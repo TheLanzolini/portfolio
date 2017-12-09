@@ -137,7 +137,7 @@ const Projects = () => (
           { index % 2 === 1 && <TextPanel {...project} /> }
           <ImagePanel>
             <a target="_blank" href={project.link}>
-              <img src={project.image} />
+              <img src={`/${project.image}`} />
             </a>
           </ImagePanel>
           { index % 2 === 0 && <TextPanel {...project} /> }
