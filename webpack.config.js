@@ -56,6 +56,10 @@ const browserConfig = {
 const serverConfig = {
   entry: './src/server/index.js',
   target: 'node',
+  node: {
+    __dirname: false,
+    __filename: false
+  },
   output: {
     path: `${__dirname}/dist`,
     filename: 'server.js',
