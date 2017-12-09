@@ -22,8 +22,8 @@ Content Dev
   - [ ] My Head Parallax
   - [X] Dancing Browsers
   - [ ] Dancing Devices
-- [ ] Projects
-  - [ ] Professional
+- [X] Projects
+  - [X] Professional
   - [ ] Personal
 - [X] About
   - [ ] Short Life Story
@@ -32,3 +32,14 @@ Content Dev
  - [X] Informal
 - [ ] Footer
 - [ ] Fetching Data
+
+
+# If you want to run this
+
+`npm install -g yarn`
+
+`yarn install`
+
+`yarn dev` (may have to run this twice because I haven't worked out the kinks in the build process)
+
+look at localhost:3000
