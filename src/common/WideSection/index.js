@@ -6,7 +6,6 @@ const WideSection = styled.div`
   height: 350px;
   box-shadow: ${global_box_shadow};
   display: flex;
-  overflow: hidden;
   margin: 12px 0 0;
   @media screen and (max-width: 500px) {
     height: 200px;

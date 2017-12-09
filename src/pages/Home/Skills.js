@@ -34,6 +34,8 @@ const SkillWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  margin: 10px 0;
 `
 
 const SkillImg = styled.img`
@@ -71,16 +73,16 @@ const descriptions = {
   [redux]: 'I have worked with these state systems in the past and even written some of my own personal ones, but redux seems to nail the formula down and I love using it with react.',
   [angular]: 'I have the most experience with Angular 1.x than any other library, even surpassing jQuery. Had React not existd, I might be on board the Angular5 train.',
   [electron]: 'I have been following electron from the beginning and I love the idea of native desktop experiences that share the same source code. I have used it many times for my own personal projects.',
-  [webpack]: '',
-  [gulp]: '',
-  [git]: '',
-  [sass]: '',
-  [aws]: '',
-  [windows]: '',
-  [mac]: '',
-  [linux]: '',
-  [cordova]: '',
-  [cc]: '',
+  [webpack]: 'I have been using webpack since version 1 on production level applications and although I prefer the programmatic gulp, webpack works well with React and it has such great support.',
+  [gulp]: 'I more or less skipped over Grunt and really took to gulp. I have experience using gulp on many production level apps, had it not been for React and Webpack I would still be using it',
+  [git]: 'I have been using git since my first job as a developer. I have eventually come to use it as a collaboration tool on GitHub as well as version control. I ❤ GitHub.',
+  [sass]: 'I have a lot of experience using SASS and have used it for many production level applications. I also have experience using other forms of css preprocessors as well like stylus.',
+  [aws]: 'As a frontend developer, I never had to use AWS for servers and any of my personal projects fit fine on heroku, but I have written many deploy scripts to upload to S3.',
+  [windows]: 'I have been using windows as long as I had a computer and I am very familiar. I currently use it for certain development purposes but mostly keep it around for PC gaming.',
+  [mac]: 'I have been using Mac OSX since I started my career and I am familiar with using the development tools for both web development as well as circumstancial use of xcode.',
+  [linux]: 'As well as OSX, I have been using linux since the start of my career as well. Using Ubuntu at my first job and carrying over my experience into Arch.',
+  [cordova]: 'I have used cordova in the past to emulate and build native apps using the already built web applications.',
+  [cc]: 'I have used the Adobe Creative Cloud to collaborate with designers and edit video (Premiere) and sound (Audition). I have also used Photoshop and Illustrator to take assets from designers for development.',
 }
 
 
@@ -90,7 +92,7 @@ const Skills = () => {
       {
         skills.map((skill, index) => (
           <SkillWrapper key={index}>
-            <Skill target={(<SkillImg src={skill} />)} description={descriptions[skill]} />
+            <Skill target={(<SkillImg src={skill} />)} description={descriptions[skill]} alignself={((index > 4 && index < 10) || (index > 13) ) ? 'right' : 'left'} />
           </SkillWrapper>
         ))
       }
