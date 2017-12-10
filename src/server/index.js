@@ -29,12 +29,9 @@ app.get('*', (req, res) => {
       </Provider>
     )
   )
-  console.log(req.url)
+  // Resolving code split
   if ( (/\/projects\/.\.bundle\.js/).test(req.url) ) {
-    console.log(__dirname, 'dirname')
-    console.log(__filename, 'filename')
     const newUrl = req.url.replace('/projects/', `${__dirname}/`)
-    console.log(newUrl)
     return res.sendFile(newUrl)
   }
   const helmet = Helmet.renderStatic()

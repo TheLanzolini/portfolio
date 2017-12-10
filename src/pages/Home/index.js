@@ -4,8 +4,6 @@ import Panel from 'common/Panel'
 import styled from 'styled-components'
 import myface from 'images/myface.jpeg'
 import { Helmet } from 'react-helmet'
-import { fadeInTop, fadeInLeftDelay, fadeInRightDelay } from 'common/Animation'
-// import MyHead from 'common/MyHead'
 import Skills from './Skills'
 import Browser from './Browser'
 
@@ -22,16 +20,7 @@ const Caption = styled.p`
   text-align: center;
 `
 
-const FadeInTop = styled.div`
-  animation: ${fadeInTop} 0.5s ease;
-`
-
-const TextFadeIn = styled.span`
-  animation: ${fadeInLeftDelay} 0.5s ease;
-`
-
-const MyFaceFadeIn = styled.span`
-  animation ${fadeInRightDelay} 0.5s ease;
+const MyFaceFade = styled.span`
   text-align: center;
 `
 
@@ -72,26 +61,22 @@ const BrowsersTitle = TitleSection.extend`
 
 export default () => (
   <div>
-    <FadeInTop>
-      <WideSection>
-        <Helmet title="Home" />
-        <Panel color="white" backgroundcolor="#FF9800">
-          <TextFadeIn>
-            Alex Lanzoni
-            <br />
-            FE Web Developer
-            <br />
-            and Gamer
-          </TextFadeIn>
-        </Panel>
-        <Panel>
-          <MyFaceFadeIn>
-            <MyFace src={myface} />
-            <Caption>My smug face. Circa 2017.</Caption>
-          </MyFaceFadeIn>
-        </Panel>
-      </WideSection>
-    </FadeInTop>
+    <WideSection>
+      <Helmet title="Home" />
+      <Panel color="white" backgroundcolor="#FF9800">
+        Alex Lanzoni
+        <br />
+        FE Web Developer
+        <br />
+        and Gamer
+      </Panel>
+      <Panel>
+        <MyFaceFade>
+          <MyFace src={myface} />
+          <Caption>My smug face. Circa 2017.</Caption>
+        </MyFaceFade>
+      </Panel>
+    </WideSection>
     <TitleSection>Skills</TitleSection>
     <SkillSection>
       <Skills />

@@ -5,7 +5,6 @@ class Split extends React.Component {
   componentWillMount() {
     this.cancelUpdate = false
     this.props.load.then(Component => {
-      console.log('loaded', Component)
       this.Component = Component
       if (!this.cancelUpdate && process.browser) {
         this.forceUpdate()

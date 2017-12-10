@@ -21,7 +21,7 @@ const links = [
 const Header = () => (
   <HeaderContainer>
     {
-      links.map((link, index) => (<NavLink exact activeClassName="active" className="nav-link" key={index} to={link.to}>{link.name}</NavLink>))
+      links.map((link, index) => (<NavLink exact={link.name == 'Home'} activeClassName="active" className="nav-link" key={index} to={link.to}>{link.name}</NavLink>))
     }
   </HeaderContainer>
 )
