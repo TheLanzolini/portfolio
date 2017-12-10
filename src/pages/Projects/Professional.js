@@ -95,12 +95,6 @@ const projects = [
   },
 ]
 
-
-
-
-
-const Projects = () => (
-  <ProjectList projects={projects} />
-)
+const Projects = () => (<ProjectList projects={projects} />)
 
 export default Projects

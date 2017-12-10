@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet'
 import Skills from './Skills'
 import Browser from './Browser'
 
+import githubImg from 'images/github.svg'
+
 const MyFace = styled.img`
   width: 66%;
   height: 66%;
@@ -59,10 +61,36 @@ const BrowsersTitle = TitleSection.extend`
   margin-top: 0;
 `
 
+const GithubSection = WideSection.extend`
+  height: 50px;
+`
+
+const GithubImg = styled.img`
+  height: 75%;
+`
+
+const GithubTextPanel = Panel.extend`
+  flex: 3;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 24px;
+`
+
 export default () => (
   <div>
+    <Helmet>
+      <title>Home</title>
+    </Helmet>
+    <GithubSection>
+      <Panel backgroundcolor="#24292e">
+        <GithubImg src={githubImg} />
+      </Panel>
+      <GithubTextPanel backgroundcolor="#24292e" color="white">
+        <span>Check out my github!&nbsp;</span>
+        <a target="_blank" href="https://github.com/TheLanzolini">https://github.com/TheLanzolini</a>
+      </GithubTextPanel>
+    </GithubSection>
     <WideSection>
-      <Helmet title="Home" />
       <Panel color="white" backgroundcolor="#FF9800">
         Alex Lanzoni
         <br />
