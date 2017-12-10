@@ -64,6 +64,8 @@ const skills = [
   cc,
 ]
 
+const skillNames = skills.map(skill => skill.replace(/media\//, '').replace(/\.(png|svg|jpg)/, '').toUpperCase())
+
 const descriptions = {
   [html5]: 'I\'ve been working with HTML since high school. I have a solid understanding of the DOM and HTML5 elements including audio, video, and canvas.',
   [css3]: 'I\'ve been writing css just as long as I have been writing HTML. I am well versed in browser specific issues and features as well as animations and transitions.',
@@ -90,11 +92,19 @@ const Skills = () => {
   return (
     <SkillContainer>
       {
-        skills.map((skill, index) => (
-          <SkillWrapper key={index}>
-            <Skill target={(<SkillImg src={skill} />)} description={descriptions[skill]} alignself={((index > 4 && index < 10) || (index > 13) ) ? 'right' : 'left'} />
-          </SkillWrapper>
-        ))
+        skills.map((skill, index) => {
+          const Description = () => (
+            <div>
+              <div>{skillNames[index]}</div>
+              <div>{descriptions[skill]}</div>
+            </div>
+          )
+          return (
+            <SkillWrapper key={index}>
+              <Skill target={(<SkillImg src={skill} />)} description={<Description />} alignself={((index > 4 && index < 9) || (index > 13) ) ? 'right' : 'left'} />
+            </SkillWrapper>
+          )
+        })
       }
     </SkillContainer>
   )
