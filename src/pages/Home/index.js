@@ -6,6 +6,7 @@ import myface from 'images/myface.jpeg'
 import { Helmet } from 'react-helmet'
 import Skills from './Skills'
 import Browser from './Browser'
+import Champions from './Champions'
 
 import githubImg from 'images/github.svg'
 
@@ -76,6 +77,11 @@ const GithubTextPanel = Panel.extend`
   font-size: 24px;
 `
 
+const ChampionsSection = WideSection.extend`
+  height: 420px;
+  padding: 12px;
+`
+
 export default () => (
   <div>
     <Helmet>
@@ -124,5 +130,8 @@ export default () => (
         I also have worked to make every website and app perform well and provide great user experience on handheld devices.
       </SkillText>
     </BrowsersAndDevices>
+    <ChampionsSection>
+      <Champions />
+    </ChampionsSection>
   </div>
 )

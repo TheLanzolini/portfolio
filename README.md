@@ -25,13 +25,13 @@ Content Dev
   - [ ] Dancing Devices
 - [X] Projects
   - [X] Professional
-  - [ ] Personal
+  - [X] Personal
 - [X] About
   - [ ] Short Life Story
 - [X] Contact
  - [X] Formal
  - [X] Informal
-- [ ] Footer
+- [X] Footer
 - [ ] Fetching Data
 
 
