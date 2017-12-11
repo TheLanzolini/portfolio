@@ -24,20 +24,32 @@ const NavWrapper = styled.div`
   }
 `
 
-const Projects = (props) => {
-  const isPersonal = (!!props.match.params && !!props.match.params.type && props.match.params.type === 'personal')
-  return (
-    <div>
-      <Helmet>
-        <title>{isPersonal ? 'Personal Projects' : 'Professional Projects'}</title>
-      </Helmet>
-      <NavWrapper>
-        <NavLink className={isPersonal ? '' : 'active'} to="/projects/professional">Professional</NavLink>
-        <NavLink className={isPersonal ? 'active' : ''} to="/projects/personal">Personal</NavLink>
-      </NavWrapper>
-      { isPersonal ? <Personal /> : <Professional /> }
-    </div>
-  )
+class Projects extends React.Component {
+  constructor(props) {
+    super(props)
+    this.dataCall = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('abc')
+      }, 2000)
+    })
+  }
+
+  render() {
+    const { props } = this
+    const isPersonal = (!!props.match.params && !!props.match.params.type && props.match.params.type === 'personal')
+    return (
+      <div>
+        <Helmet>
+          <title>{isPersonal ? 'Personal Projects' : 'Professional Projects'}</title>
+        </Helmet>
+        <NavWrapper>
+          <NavLink className={isPersonal ? '' : 'active'} to="/projects/professional">Professional</NavLink>
+          <NavLink className={isPersonal ? 'active' : ''} to="/projects/personal">Personal</NavLink>
+        </NavWrapper>
+        { isPersonal ? <Personal /> : <Professional /> }
+      </div>
+    )
+  }
 }
 
 export default Projects

@@ -6,7 +6,7 @@ import { renderToString } from 'react-dom/server'
 import reducers from '../reducers'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router'
-import { renderRoutes } from 'react-router-config'
+import { matchRoutes, renderRoutes } from 'react-router-config'
 import Routes from '../Routes'
 import { ServerStyleSheet } from 'styled-components'
 import { Helmet } from 'react-helmet'
@@ -18,6 +18,27 @@ const app = express()
 app.use(express.static('dist'))
 
 app.get('*', (req, res) => {
+  const branch = matchRoutes(Routes, req.url)
+  const promises = []
+  branch.forEach(({ route }) => {
+    const comp = new route.component()
+    if (comp.dataCall && comp.dataCall.then) {
+      promises.push(comp.dataCall)
+    }
+    if (comp.props && comp.props.children && Array.isArray(comp.props.children)) {
+      comp.props.children.forEach(child => {
+        if (child.props && child.props.children && child.props.children.type && typeof(child.props.children.type) === 'function') {
+          const childComp = new child.props.children.type()
+          if (childComp && childComp.dataCall && childComp.dataCall.then) {
+            promises.push(childComp.dataCall)
+          }
+        }
+      })
+    }
+  })
+  console.log(promises)
+  // Promise.all(promises).then(console.log)
+  // Resolve all promises and stick it in the store, then make components render based on the redux store
   const context = {}
   const sheet = new ServerStyleSheet()
   const html = renderToString(

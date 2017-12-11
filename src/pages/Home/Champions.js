@@ -53,16 +53,24 @@ class Champions extends PureComponent {
       currentChampion: null,
     }
     this.updateCurrentChampion = this.updateCurrentChampion.bind(this)
+    this.dataCall = fetch('http://ddragon.leagueoflegends.com/cdn/7.23.1/data/en_US/champion.json').then(res => res.json()).then(res => res.data)
+    this.fetchData = function(store) {
+      const Q = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('abc')
+        }, 1000)
+      })
+      return Q
+    }
   }
 
   componentWillMount() {
-    this.dataCall = fetch('http://ddragon.leagueoflegends.com/cdn/7.23.1/data/en_US/champion.json')
-    this.dataCall.then(res => res.json()).then(res => {
-      this.data = res.data
-      if (!this.cancelUpdate && process.browser) {
-        this.forceUpdate()
-      }
-    })
+    // this.dataCall.then(res => res.json()).then(res => {
+    //   this.data = res.data
+    //   if (!this.cancelUpdate && process.browser) {
+    //     this.forceUpdate()
+    //   }
+    // })
   }
 
   componentWillUnmount() {

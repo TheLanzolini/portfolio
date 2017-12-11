@@ -8,6 +8,24 @@ import Projects from 'pages/Projects'
 // CODE SPLITTING!!
 const About = () => (<Split load={import('pages/About')} />)
 const Contact = () => (<Split load={import('pages/Contact')} />)
+const h = new Projects()
+// console.log(h)
+if (process.browser) {
+  window.h = h
+  // const promises = []
+  // var q = new h.props.children[6].props.children.type()
+  // if (h.props && h.props.children && Array.isArray(h.props.children)) {
+  //   h.props.children.forEach(child => {
+  //     if (child.props && child.props.children && child.props.children.type && typeof(child.props.children.type) === 'function') {
+  //       const a = new child.props.children.type()
+  //       if (a && a.dataCall && a.dataCall.then) {
+  //         promises.push(a.dataCall)
+  //       }
+  //     }
+  //   })
+  // }
+  // Promise.all(promises).then(console.log)
+}
 
 const routes = [
   { component: App,
