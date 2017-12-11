@@ -24,7 +24,6 @@ const NavWrapper = styled.div`
   }
 `
 
-
 const Projects = (props) => {
   const isPersonal = (!!props.match.params && !!props.match.params.type && props.match.params.type === 'personal')
   return (
