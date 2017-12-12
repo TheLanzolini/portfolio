@@ -1,5 +1,8 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { championsLoaded } from 'reducers/championsReducer'
+import { Example } from 'common/Example'
 import 'isomorphic-fetch'
 
 const ChampionsWrapper = styled.div`
@@ -43,7 +46,7 @@ const ChampionsImg = styled.img`
   background-color: #cdcdcd;
 `
 
-class Champions extends PureComponent {
+class Champions extends Example {
 
   constructor(props) {
     super(props)
@@ -53,15 +56,26 @@ class Champions extends PureComponent {
       currentChampion: null,
     }
     this.updateCurrentChampion = this.updateCurrentChampion.bind(this)
-    this.dataCall = fetch('http://ddragon.leagueoflegends.com/cdn/7.23.1/data/en_US/champion.json').then(res => res.json()).then(res => res.data)
-    this.fetchData = function(store) {
-      const Q = new Promise((resolve, reject) => {
-        setTimeout(() => {
-          resolve('abc')
-        }, 1000)
+    // if (!Object.keys(this.props.champions).length) {
+    this.dataCall = (store) => fetch('http://ddragon.leagueoflegends.com/cdn/7.23.1/data/en_US/champion.json').then(res => res.json()).then(res => {
+      const { data } = res
+      store.dispatch(championsLoaded(data))
+      return new Promise((resolve, reject) => {
+        // setTimeout(() => {
+        resolve()
+        // }, 2000)
       })
-      return Q
-    }
+    })
+    this.addDataCall(this.dataCall)
+    // }
+    // this.fetchData = function(store) {
+    //   const Q = new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //       resolve('abc')
+    //     }, 1000)
+    //   })
+    //   return Q
+    // }
   }
 
   componentWillMount() {
@@ -73,6 +87,15 @@ class Champions extends PureComponent {
     // })
   }
 
+  componentDidMount() {
+    if (!Object.keys(this.props.champions).length) {
+      console.log('not here so I would fetch')
+      fetch('http://ddragon.leagueoflegends.com/cdn/7.23.1/data/en_US/champion.json').then(res => res.json()).then(res => {
+        this.props.championsLoaded(res.data)
+      })
+    }
+  }
+
   componentWillUnmount() {
     this.cancelUpdate = true
   }
@@ -82,7 +105,7 @@ class Champions extends PureComponent {
   }
 
   render() {
-    const champions = !this.data ? null : Object.entries(this.data)
+    const champions = !this.props.champions ? null : Object.entries(this.props.champions)
     return (
       <ComponentWrapper>
         <div>
@@ -91,12 +114,12 @@ class Champions extends PureComponent {
         </div>
         <ChampionsWrapper>
           {
-            (champions || []).map(champion => {
+            (champions || []).map((champion, index) => {
               const onClick = () => {
                 this.updateCurrentChampion(champion[1])
               }
               return (
-                <Champion onClick={onClick} key={champion[0]}>
+                <Champion onClick={onClick} key={index}>
                   <ChampionsImg src={`//ddragon.leagueoflegends.com/cdn/7.23.1/img/champion/${champion[1].image.full}`} />
                   <div>{champion[0]}</div>
                 </Champion>
@@ -110,4 +133,14 @@ class Champions extends PureComponent {
   }
 }
 
-export default Champions
+const mapStateToProps = (state) => {
+  return { champions: state.Champions }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    championsLoaded: (data) => dispatch(championsLoaded(data)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Champions)

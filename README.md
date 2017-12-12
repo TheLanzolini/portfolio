@@ -32,8 +32,8 @@ Content Dev
  - [X] Formal
  - [X] Informal
 - [X] Footer
-- [ ] Fetching Data
-
+- [X] Fetching Data
+  - [ ] FIX YO COMMENTS / rename Example
 
 # If you want to run this
 

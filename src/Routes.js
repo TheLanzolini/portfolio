@@ -8,10 +8,8 @@ import Projects from 'pages/Projects'
 // CODE SPLITTING!!
 const About = () => (<Split load={import('pages/About')} />)
 const Contact = () => (<Split load={import('pages/Contact')} />)
-const h = new Projects()
-// console.log(h)
 if (process.browser) {
-  window.h = h
+  window.h = Home
   // const promises = []
   // var q = new h.props.children[6].props.children.type()
   // if (h.props && h.props.children && Array.isArray(h.props.children)) {
