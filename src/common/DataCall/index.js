@@ -2,7 +2,7 @@ import React from 'react'
 
 let Promises = []
 
-export class Example extends React.Component {
+export class DataCall extends React.Component {
   constructor(props) {
     super(props)
     this.addDataCall = this.addDataCall.bind(this)

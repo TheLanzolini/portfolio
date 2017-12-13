@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import { championsLoaded } from 'reducers/championsReducer'
-import { Example } from 'common/Example'
+import { DataCall } from 'common/DataCall'
 import 'isomorphic-fetch'
 
 const ChampionsWrapper = styled.div`
@@ -46,7 +46,22 @@ const ChampionsImg = styled.img`
   background-color: #cdcdcd;
 `
 
-class Champions extends Example {
+const ChampionDescription = styled.div`
+  min-height: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .instruction {
+    color: #adadad;
+    font-style: italic;
+  }
+`
+
+const ChampionInfo = styled.div`
+  font-size: 14px;
+`
+
+class Champions extends DataCall {
 
   constructor(props) {
     super(props)
@@ -56,40 +71,22 @@ class Champions extends Example {
       currentChampion: null,
     }
     this.updateCurrentChampion = this.updateCurrentChampion.bind(this)
-    // if (!Object.keys(this.props.champions).length) {
     this.dataCall = (store) => fetch('http://ddragon.leagueoflegends.com/cdn/7.23.1/data/en_US/champion.json').then(res => res.json()).then(res => {
       const { data } = res
       store.dispatch(championsLoaded(data))
-      return new Promise((resolve, reject) => {
-        // setTimeout(() => {
-        resolve()
-        // }, 2000)
-      })
+      return Promise.resolve()
+      // this helps demonstrate async SSR
+      // return new Promise((resolve, reject) => {
+      //   setTimeout(() => {
+      //     resolve()
+      //   }, 2000)
+      // })
     })
     this.addDataCall(this.dataCall)
-    // }
-    // this.fetchData = function(store) {
-    //   const Q = new Promise((resolve, reject) => {
-    //     setTimeout(() => {
-    //       resolve('abc')
-    //     }, 1000)
-    //   })
-    //   return Q
-    // }
-  }
-
-  componentWillMount() {
-    // this.dataCall.then(res => res.json()).then(res => {
-    //   this.data = res.data
-    //   if (!this.cancelUpdate && process.browser) {
-    //     this.forceUpdate()
-    //   }
-    // })
   }
 
   componentDidMount() {
     if (!Object.keys(this.props.champions).length) {
-      console.log('not here so I would fetch')
       fetch('http://ddragon.leagueoflegends.com/cdn/7.23.1/data/en_US/champion.json').then(res => res.json()).then(res => {
         this.props.championsLoaded(res.data)
       })
@@ -127,7 +124,16 @@ class Champions extends Example {
             })
           }
         </ChampionsWrapper>
-        <div>{this.state.currentChampion ? `[${this.state.currentChampion.name}]: ${this.state.currentChampion.blurb}` : <br /> }</div>
+        <ChampionDescription>
+          {
+            this.state.currentChampion
+              ? `[${this.state.currentChampion.name}]: ${this.state.currentChampion.blurb}`
+              : <div className="instruction">Click on a champion portrait to see their blurb.</div>
+          }
+        </ChampionDescription>
+        <ChampionInfo>
+          This data is asynchronously fetched and rendered on the server on first load. If you (for example) go to a different view and refresh and route back here, this module will load client side instead.
+        </ChampionInfo>
       </ComponentWrapper>
     )
   }

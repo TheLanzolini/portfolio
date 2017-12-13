@@ -6,37 +6,25 @@ import { renderToString } from 'react-dom/server'
 import reducers from '../reducers'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router'
-import { matchRoutes, renderRoutes } from 'react-router-config'
+import { renderRoutes } from 'react-router-config'
 import Routes from '../Routes'
 import { ServerStyleSheet } from 'styled-components'
 import { Helmet } from 'react-helmet'
 import 'isomorphic-fetch'
-import { collectPromises, clearPromises } from 'common/Example'
+import { collectPromises, clearPromises } from 'common/DataCall'
 
 const app = express()
 
 app.use(express.static('dist'))
 
 app.get('*', (req, res) => {
-  // const branch = matchRoutes(Routes, req.url)
-  // const Q = fetch('http://ddragon.leagueoflegends.com/cdn/7.23.1/data/en_US/champion.json').then(res => res.json()).then(res => {
-  //   const { data } = res
-  //   return new Promise((resolve, reject) => {
-  //     store.dispatch({ type: '@@portfolio/CHAMPIONS_LOADED', data })
-  //     // this.props.championsLoaded(data)
-  //     resolve(data)
-  //   })
-  // })
-  // Q.then(() => {
   const store = createStore(reducers)
-  // const collectedPromises = collectPromises()
-  // collectedPromises.forEach(p => {
-  //   promises.push(p(store))
-  // })
-
   const context = {}
   const sheet = new ServerStyleSheet()
   // renderToString and save to nowhere so we can gather the promises
+  // I'm "rendering" the views so that I can compile the promises necessary for the actual render
+  // because I wouldn't want to request all the data in the app and stick it in the store if we only need _some_ of the data
+  // and the only real way to know (that I have found as of right now) is to render out the components and collect the promises.
   renderToString(
     sheet.collectStyles(
       <Provider store={store}>
@@ -60,6 +48,7 @@ app.get('*', (req, res) => {
     )
     const state = store.getState()
     // Resolving code split
+    // TODO improve logic here for all routes
     if ( (/\/projects\/.\.bundle\.js/).test(req.url) ) {
       const newUrl = req.url.replace('/projects/', `${__dirname}/`)
       return res.sendFile(newUrl)
@@ -88,27 +77,6 @@ app.get('*', (req, res) => {
       </html>
     `)
   })
-  // })
-  // branch.forEach(({ route }) => {
-  //   const comp = new route.component()
-  //   if (comp.dataCall && comp.dataCall.then) {
-  //     promises.push(comp.dataCall)
-  //   }
-  //   if (comp.props && comp.props.children && Array.isArray(comp.props.children)) {
-  //     comp.props.children.forEach(child => {
-  //       if (child.props && child.props.children && child.props.children.type && typeof(child.props.children.type) === 'function') {
-  //         const childComp = new child.props.children.type()
-  //         if (childComp && childComp.dataCall && childComp.dataCall.then) {
-  //           promises.push(childComp.dataCall)
-  //         }
-  //       }
-  //     })
-  //   }
-  // })
-  // console.log(promises)
-  // Promise.all(promises).then(console.log)
-  // Resolve all promises and stick it in the store, then make components render based on the redux store
-
 })
 
 app.listen(process.env.PORT || 3000, () => {

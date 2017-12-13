@@ -78,7 +78,7 @@ const GithubTextPanel = Panel.extend`
 `
 
 const ChampionsSection = WideSection.extend`
-  height: 420px;
+  height: 450px;
   padding: 12px;
 `
 
