@@ -7,7 +7,7 @@ import reducers from '../reducers'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router'
 import { renderRoutes } from 'react-router-config'
-import Routes from '../Routes'
+import Routes from '../routes'
 import { ServerStyleSheet } from 'styled-components'
 import { Helmet } from 'react-helmet'
 import 'isomorphic-fetch'
@@ -19,7 +19,9 @@ app.use(express.static('dist'))
 
 app.get('*', (req, res) => {
   const store = createStore(reducers)
-  const context = {}
+  const context = {
+    splitPoints: [],
+  }
   const sheet = new ServerStyleSheet()
   // renderToString and save to nowhere so we can gather the promises
   // I'm "rendering" the views so that I can compile the promises necessary for the actual render
@@ -63,13 +65,15 @@ app.get('*', (req, res) => {
           ${helmet.meta.toString()}
           ${helmet.link.toString()}
           ${styleTags}
+          <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
           <link rel="stylesheet" href="/css/main.css" />
         </head>
         <body>
           <script>
             // WARNING: See the following for security issues around embedding JSON in HTML:
             // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
-            window.__PRELOADED_STATE__ = ${JSON.stringify(state).replace(/</g, '\\u003c')}
+            window.__SPLIT_POINTS__ =${JSON.stringify(context.splitPoints)};
+            window.__PRELOADED_STATE__ = ${JSON.stringify(state).replace(/</g, '\\u003c')};
           </script>
           <script src="/bundle.js" async></script>
           <div id="root">${html}</div>

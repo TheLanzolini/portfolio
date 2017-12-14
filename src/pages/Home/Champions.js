@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { championsLoaded } from 'reducers/championsReducer'
+import { championsLoaded } from 'reducers/ChampionsReducer'
 import { DataCall } from 'common/DataCall'
 import 'isomorphic-fetch'
 

@@ -5,12 +5,15 @@ import { renderRoutes } from 'react-router-config'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducers from '../reducers'
-import Routes from '../Routes'
+import Routes from '../routes'
+import * as AsyncChunks from 'routes/sync'
 
+const splitPoints = window.__SPLIT_POINTS__ || []
 const preloadedState = window.__PRELOADED_STATE__
 
 // Garbage Collect
 delete window.__PRELOADED_STATE__
+delete window.__SPLIT_POINTS__
 
 const store = createStore(reducers, preloadedState)
 
@@ -22,4 +25,4 @@ const AppRoot = () => (
   </Provider>
 )
 
-hydrate(<AppRoot />, document.getElementById('root'))
+Promise.all(splitPoints.map(chunk => AsyncChunks[chunk].loadComponent())).then(() => hydrate(<AppRoot />, document.getElementById('root')))

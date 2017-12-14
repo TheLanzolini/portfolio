@@ -33,7 +33,8 @@ Content Dev
  - [X] Informal
 - [X] Footer
 - [X] Fetching Data
-  - [ ] FIX YO COMMENTS / rename Example
+  - [X] FIX YO COMMENTS / rename Example
+  - [ ] Reformat champions to work with spritemap
 
 # If you want to run this
 

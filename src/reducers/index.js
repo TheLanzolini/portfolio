@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import HardList from './HardListReducer'
-import Champions from './ChampionsReducer'
+import HardList from 'reducers/HardListReducer'
+import Champions from 'reducers/ChampionsReducer'
 
 const reducers = combineReducers({
   HardList,

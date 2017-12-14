@@ -49,7 +49,11 @@ const browserConfig = {
   plugins: [
     new ExtractTextPlugin({
       filename: 'css/[name].css'
-    })
+    }),
+    new webpack.NormalModuleReplacementPlugin(
+      /sync.js/,
+      './async.js'
+    ),
   ]
 };
 
