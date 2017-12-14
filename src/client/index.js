@@ -25,4 +25,4 @@ const AppRoot = () => (
   </Provider>
 )
 
-Promise.all(splitPoints.map(chunk => AsyncChunks[chunk].loadComponent())).then(() => hydrate(<AppRoot />, document.getElementById('root')))
+Promise.all(splitPoints.map(chunk => AsyncChunks[chunk].loadComponent(AsyncChunks))).then(() => {hydrate(<AppRoot />, document.getElementById('root'))})
