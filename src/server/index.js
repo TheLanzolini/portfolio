@@ -28,13 +28,11 @@ app.get('*', (req, res) => {
   // because I wouldn't want to request all the data in the app and stick it in the store if we only need _some_ of the data
   // and the only real way to know (that I have found as of right now) is to render out the components and collect the promises.
   renderToString(
-    sheet.collectStyles(
-      <Provider store={store}>
-        <StaticRouter location={req.url} context={context}>
-          {renderRoutes(Routes)}
-        </StaticRouter>
-      </Provider>
-    )
+    <Provider store={store}>
+      <StaticRouter location={req.url} context={context}>
+        {renderRoutes(Routes)}
+      </StaticRouter>
+    </Provider>
   )
   const promises = collectPromises().map(promise => promise(store))
   Promise.all(promises).then(() => {
@@ -57,7 +55,9 @@ app.get('*', (req, res) => {
     }
     const helmet = Helmet.renderStatic()
     const styleTags = sheet.getStyleTags()
-
+    if (context.status === 404) {
+      res.status(404)
+    }
     res.send(`
         <!DOCTYPE html>
         <head>

@@ -35,8 +35,15 @@ const browsers = {
   },
 }
 
-const BrowserImg = styled.img`
-  display: block;
+const BrowserImg = styled.div.attrs({
+  src: props => props.src,
+})`
+  width: 150px;
+  height: 150px;
+  background-image: url(${props => props.src});
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
 `
 
 
@@ -48,7 +55,7 @@ class Browser extends React.Component {
     this.timeout = null
     this.interval = setInterval(this.switchKeyframe, 750)
   }
-  
+
   switchKeyframe() {
     this.setState({ keyframe: this.state.keyframe === 1 ? 2 : 1 })
   }

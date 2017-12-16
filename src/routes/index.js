@@ -1,6 +1,7 @@
 import App from '../App.js'
 
 import { Home, About, Contact, Projects } from './sync'
+import NotFound from 'pages/NotFound'
 
 const routes = [
   { component: App,
@@ -24,6 +25,9 @@ const routes = [
       },
       { path: '/projects/:type',
         component: Projects,
+      },
+      { path: '*',
+        component: NotFound,
       },
     ],
   },

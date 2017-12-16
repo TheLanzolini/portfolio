@@ -38,9 +38,15 @@ const SkillWrapper = styled.div`
   margin: 10px 0;
 `
 
-const SkillImg = styled.img`
-  width: 100%;
-  display: block;
+const SkillImg = styled.div.attrs({
+  src: props => props.src,
+})`
+  width: 100px;
+  height: 100px;
+  background-image: url(${props => props.src});
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
 `
 
 const skills = [

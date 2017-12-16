@@ -8,6 +8,7 @@ I built this project in order to use everything I liked about the `React` stack 
 - [X] React Router to handle the routing (both server and client)
 - [X] Server Side Rendering: The process of rendering Client Side Components for faster 1st-request loads and also SEO
 - [X] Code Splitting: Ability to lazy-load or asynchronously load components that the app doesn't need initially
+  - [X] Have it also work with SSR
 - [X] React Helmet for head tags for the `<head>`
   - [ ] Meta tags for SEO & google
 - [ ] 404 Handling on Client and Server
@@ -20,7 +21,6 @@ Content Dev
 - [X] Home Page
   - [X] My smug face
   - [X] Skills
-  - [ ] My Head Parallax
   - [X] Dancing Browsers
   - [ ] Dancing Devices
 - [X] Projects
@@ -34,7 +34,8 @@ Content Dev
 - [X] Footer
 - [X] Fetching Data
   - [X] FIX YO COMMENTS / rename Example
-  - [ ] Reformat champions to work with spritemap
+  - [X] Reformat champions to work with spritemap
+- [ ] Responsiveness
 
 # If you want to run this
 

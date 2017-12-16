@@ -1,10 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
-
-const MinHeightSplit = styled.div`
-  min-height: 80vh;
-`
+import { MinHeight } from 'common/Styled'
 
 class Split extends React.Component {
   componentWillMount() {
@@ -24,7 +20,7 @@ class Split extends React.Component {
   render() {
     const { componentProps } = this.props
     return (
-      <MinHeightSplit>
+      <MinHeight>
         {
           this.Component
             ? this.Component.default
@@ -32,7 +28,7 @@ class Split extends React.Component {
               : <this.Component {...componentProps} />
             : null
         }
-      </MinHeightSplit>
+      </MinHeight>
     )
   }
 }

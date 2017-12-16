@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Header from 'common/Header'
 import Footer from 'common/Footer'
 import { Helmet } from 'react-helmet'
+import { MinHeight } from 'common/Styled'
 
 import './App.css'
 
@@ -29,7 +30,9 @@ class App extends React.Component {
           ]}
         />
         <Header />
-        {renderRoutes(this.props.route.routes)}
+        <MinHeight>
+          {renderRoutes(this.props.route.routes)}
+        </MinHeight>
         <Footer />
       </AppContainer>
     )

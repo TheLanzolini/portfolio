@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const StyledFooter = styled.div`
+const StyledFooter = styled.footer`
   padding: 26px;
   margin-top: 26px;
   line-height: 1.5;

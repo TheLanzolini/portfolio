@@ -8,7 +8,7 @@ import 'isomorphic-fetch'
 const ChampionsWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   overflow-y: scroll;
   height: 285px;
   width: 100%;
@@ -19,6 +19,7 @@ const ChampionsWrapper = styled.div`
 const Champion = styled.div`
   cursor: pointer;
   text-align: center;
+  margin: 0 2.9px;
 `
 
 const ComponentWrapper = styled.div`
@@ -39,11 +40,19 @@ const ChampionsDescription = styled.div`
   text-align: center;
 `
 
-const ChampionsImg = styled.img`
+const ChampionsImg = styled.div.attrs({
+  src: props => props.src,
+  x: props => props.x,
+  y: props => props.y,
+})`
   display: inline-block;
-  min-width: 120px;
-  min-height: 120px;
+  min-width: 60px;
+  min-height: 60px;
   background-color: #cdcdcd;
+  background-image: url(${props => props.src});
+  background-size: 600px;
+  background-position-x: -${props => (props.x * 1.25)}px;
+  background-position-y: -${props => (props.y * 1.25)}px;
 `
 
 const ChampionDescription = styled.div`
@@ -59,6 +68,10 @@ const ChampionDescription = styled.div`
 
 const ChampionInfo = styled.div`
   font-size: 14px;
+`
+
+const ChampionName = styled.div`
+  font-size: 11px;
 `
 
 class Champions extends DataCall {
@@ -117,8 +130,8 @@ class Champions extends DataCall {
               }
               return (
                 <Champion onClick={onClick} key={index}>
-                  <ChampionsImg src={`//ddragon.leagueoflegends.com/cdn/7.23.1/img/champion/${champion[1].image.full}`} />
-                  <div>{champion[0]}</div>
+                  <ChampionsImg x={champion[1].image.x} y={champion[1].image.y} src={`//ddragon.leagueoflegends.com/cdn/7.24.1/img/sprite/${champion[1].image.sprite}`} />
+                  <ChampionName>{champion[0]}</ChampionName>
                 </Champion>
               )
             })
