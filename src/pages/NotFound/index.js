@@ -5,6 +5,9 @@ import shutterShrug from 'images/404.jpg'
 
 const MinHeight404 = MinHeight.extend`
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   a {
     color: blue;
   }
