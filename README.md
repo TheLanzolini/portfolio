@@ -11,7 +11,8 @@ I built this project in order to use everything I liked about the `React` stack 
   - [X] Have it also work with SSR
 - [X] React Helmet for head tags for the `<head>`
   - [ ] Meta tags for SEO & google
-- [ ] 404 Handling on Client and Server
+- [X] 404 Handling on Client and Server
+- [ ] Responsive
 - [ ] Service Worker Register for caching and offline
 - [ ] Offline Experience with canvas game
 
@@ -35,7 +36,6 @@ Content Dev
 - [X] Fetching Data
   - [X] FIX YO COMMENTS / rename Example
   - [X] Reformat champions to work with spritemap
-- [ ] Responsiveness
 
 # If you want to run this
 

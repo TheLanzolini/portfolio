@@ -8,7 +8,9 @@ const WideSection = styled.div`
   display: flex;
   margin: 12px 0 0;
   @media screen and (max-width: 500px) {
-    height: 200px;
+    width: 98%;
+    margin: 12px auto;
+    height: auto;
   }
 `
 

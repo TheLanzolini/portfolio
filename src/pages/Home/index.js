@@ -35,6 +35,9 @@ const TitleSection = styled.h1`
   font-weight: normal;
   text-align: center;
   margin-bottom: 0;
+  @media screen and (max-width: 500px) {
+    margin-top: 0;
+  }
 `
 
 const SkillSection = WideSection.extend`
@@ -64,6 +67,9 @@ const BrowsersTitle = TitleSection.extend`
 
 const GithubSection = WideSection.extend`
   height: 50px;
+  @media screen and (max-width: 500px) {
+    height: 50px;
+  }
 `
 
 const GithubImg = styled.img`
@@ -75,6 +81,13 @@ const GithubTextPanel = Panel.extend`
   flex-direction: row;
   justify-content: flex-start;
   font-size: 24px;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 18px;
+    padding-left: 6px;
+  }
 `
 
 const ChampionsSection = WideSection.extend`

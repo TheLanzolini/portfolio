@@ -16,6 +16,9 @@ const StyledPanel = styled.div.attrs({
   color: ${props => props.color || 'black'};
   background-color: ${props => props.backgroundcolor || 'transparent'};
   padding: ${props => props.padding || '0px'};
+  @media screen and (max-width: 500px) {
+    font-size: 20px;
+  }
 `
 
 export default StyledPanel

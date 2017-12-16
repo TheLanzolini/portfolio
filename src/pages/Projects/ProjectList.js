@@ -35,6 +35,12 @@ const TextPanel = (project) => (
   </StyledPanel>
 )
 
+// const ProjectSection = WideSection.extend`
+//   @media screen and (max-width: 500px) {
+//     flex-
+//   }
+// `
+
 const ProjectList = ({ projects }) => (
   <div>
     {

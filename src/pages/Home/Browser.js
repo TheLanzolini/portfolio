@@ -44,6 +44,10 @@ const BrowserImg = styled.div.attrs({
   background-size: auto 100%;
   background-position: center center;
   background-repeat: no-repeat;
+  @media screen and (max-width: 500px) {
+    width: 50px;
+    height: 50px;
+  }
 `
 
 

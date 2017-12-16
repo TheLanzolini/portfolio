@@ -9,6 +9,12 @@ const StyledFooter = styled.footer`
   color: white;
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items; center;
+    text-align: center;
+  }
 `
 
 const Column = styled.div.attrs({
@@ -17,6 +23,9 @@ const Column = styled.div.attrs({
   flex: 1;
   display: flex;
   justify-content: ${props => props.alignself};
+  @media screen and (max-width: 500px) {
+    justify-content: center;
+  }
 `
 
 const Footer = () => (

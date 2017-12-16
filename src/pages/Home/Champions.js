@@ -14,6 +14,10 @@ const ChampionsWrapper = styled.div`
   width: 100%;
   padding: 6px 0;
   box-shadow: inset 0px 0px 10px 1px black;
+  @media screen and (max-width: 500px) {
+    justify-content: space-around;
+    height: 200px;
+  }
 `
 
 const Champion = styled.div`

@@ -36,6 +36,10 @@ const SkillWrapper = styled.div`
   align-items: center;
   cursor: pointer;
   margin: 10px 0;
+  @media screen and (max-width: 500px) {
+    width: 50px;
+    height: 50px;
+  }
 `
 
 const SkillImg = styled.div.attrs({
@@ -47,6 +51,10 @@ const SkillImg = styled.div.attrs({
   background-size: 100% auto;
   background-position: center center;
   background-repeat: no-repeat;
+  @media screen and (max-width: 500px) {
+    width: 50px;
+    height: 50px;
+  }
 `
 
 const skills = [
