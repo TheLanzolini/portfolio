@@ -32,7 +32,7 @@ export default () => (
       </p>
       <h3>This Website</h3>
       <p>
-        I started this website to demonstrate my skills with Frontend development, and tried my best to include all the technologies I currently want to try.
+        I started this website to demonstrate my skills with Frontend development, and tried my best to include all the technologies I currently want to try out.
         I wanted to really get to work with React and create a stack around it while trying out new libraries (such as styled-components).
         I am not afraid to try new things in the hope of creating a better user experience or optimize for better performance.
         I am attempting to make a single page app that also has server side rendering (even with data) that also leverages code splitting and service workers.
