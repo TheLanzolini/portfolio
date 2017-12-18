@@ -7,6 +7,9 @@ import informal from 'images/informal.jpeg'
 
 const OverflowPanel = Panel.extend`
   overflow: hidden;
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 `
 
 export default () => (

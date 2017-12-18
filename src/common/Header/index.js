@@ -9,6 +9,19 @@ const HeaderContainer = styled.header`
   line-height: 3;
   border-bottom: 1px solid black;
   margin-bottom: 12px;
+  @media screen and (max-width: 500px) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    background-color: white;
+    top: 0;
+    a {
+      padding: 0;
+    }
+  }
 `
 
 const links = [

@@ -35,25 +35,28 @@ const TextPanel = (project) => (
   </StyledPanel>
 )
 
-// const ProjectSection = WideSection.extend`
-//   @media screen and (max-width: 500px) {
-//     flex-
-//   }
-// `
+const ProjectSection = WideSection.extend.attrs({
+  reverse: props => props.reverse,
+})`
+  flex-direction: row${props => props.reverse};
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
+`
 
 const ProjectList = ({ projects }) => (
   <div>
     {
       projects.map((project, index) => (
-        <WideSection key={index}>
-          { index % 2 === 1 && <TextPanel {...project} /> }
+        <ProjectSection reverse={index % 2 === 0 ? '-reverse' : ''} key={index}>
+          <TextPanel {...project} />
           <ImagePanel>
             <a target="_blank" href={project.link}>
               <img src={`/${project.image}`} />
             </a>
           </ImagePanel>
-          { index % 2 === 0 && <TextPanel {...project} /> }
-        </WideSection>
+          {/* index % 2 === 0 && <TextPanel {...project} /> */}
+        </ProjectSection>
       ))
     }
   </div>
