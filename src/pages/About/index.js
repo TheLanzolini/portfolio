@@ -19,7 +19,7 @@ export default () => (
       <p>
         I first started out with web development when I got a job at Syracuse University making websites with PHP and Wordpress.
         I then quickly learned to work with jQuery and ajax to load posts asynchronously. My interest in the frontend became my primary focus
-        when I was hired at Sportstech Inc. developing fantasygames. I learned how to focus on user interface and the browser to develop better
+        when I was hired at Sportstech Inc. developing fantasy games. I learned how to focus on user interface and the browser to develop better
         user experiences for our clients. Then I moved onto developing build tools and single page applications to further enchance user experience
         and create more efficient applications.
       </p>
