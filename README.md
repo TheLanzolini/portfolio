@@ -12,11 +12,12 @@ I built this project in order to use everything I liked about the `React` stack 
 - [X] React Helmet for head tags for the `<head>`
   - [ ] Meta tags for SEO & google
 - [X] 404 Handling on Client and Server
-- [ ] Responsive
+- [X] Responsive
 - [ ] Implement lazy loading for images
 - [ ] Move off of Heroku onto AWS
 - [ ] Service Worker Register for caching and offline
 - [ ] Offline Experience with canvas game
+- [ ] Manifest XML splashscreen & icons
 
 and then after that... implementing everything on [Google's PWA checklist](https://developers.google.com/web/progressive-web-apps/checklist)
 
