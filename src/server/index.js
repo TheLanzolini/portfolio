@@ -73,8 +73,6 @@ app.get('*', (req, res) => {
         </head>
         <body>
           <script>
-            // WARNING: See the following for security issues around embedding JSON in HTML:
-            // http://redux.js.org/docs/recipes/ServerRendering.html#security-considerations
             window.__SPLIT_POINTS__ =${JSON.stringify(context.splitPoints)};
             window.__PRELOADED_STATE__ = ${JSON.stringify(state).replace(/</g, '\\u003c')};
           </script>

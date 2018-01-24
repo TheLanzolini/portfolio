@@ -16,8 +16,7 @@ delete window.__PRELOADED_STATE__
 delete window.__SPLIT_POINTS__
 
 // make all links to chunks not-relative links
-console.log(process.env.ASSETS_ROOT)
-__webpack_public_path__ = 'http://localhost:8000/'
+__webpack_public_path__ = process.env.ASSETS_ROOT
 
 const store = createStore(reducers, preloadedState)
 
