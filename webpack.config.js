@@ -2,6 +2,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
+const ASSETS_ROOT = process.env.ASSET_ROOT || 'http://localhost:8000/';
+
 const browserConfig = {
   entry: './src/client/index.js',
   output: {
@@ -39,7 +41,7 @@ const browserConfig = {
         })
       },
       {
-        test: /js$/,
+        test: /\.js$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: { presets: ['react-app'] }
@@ -54,6 +56,11 @@ const browserConfig = {
       /sync.js/,
       './async.js'
     ),
+    new webpack.DefinePlugin({
+      'process.env': {
+        ASSETS_ROOT: JSON.stringify(ASSETS_ROOT)
+      }
+    }),
   ]
 };
 
@@ -94,7 +101,7 @@ const serverConfig = {
         ]
       },
       {
-        test: /js$/,
+        test: /\.js$/,
         exclude: /(node_modules)/,
         loader: 'babel-loader',
         query: { presets: ['react-app'] }

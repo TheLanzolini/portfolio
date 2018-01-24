@@ -15,6 +15,10 @@ const preloadedState = window.__PRELOADED_STATE__
 delete window.__PRELOADED_STATE__
 delete window.__SPLIT_POINTS__
 
+// make all links to chunks not-relative links
+console.log(process.env.ASSETS_ROOT)
+__webpack_public_path__ = 'http://localhost:8000/'
+
 const store = createStore(reducers, preloadedState)
 
 const AppRoot = () => (
@@ -25,4 +29,7 @@ const AppRoot = () => (
   </Provider>
 )
 
-Promise.all(splitPoints.map(chunk => AsyncChunks[chunk].loadComponent(AsyncChunks))).then(() => {hydrate(<AppRoot />, document.getElementById('root'))})
+Promise.all(splitPoints.map(chunk => AsyncChunks[chunk].loadComponent(AsyncChunks))).then(() => {
+  hydrate(<AppRoot />, document.getElementById('root'))
+  // reset it back for static assets
+})

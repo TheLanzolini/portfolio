@@ -49,10 +49,13 @@ app.get('*', (req, res) => {
     const state = store.getState()
     // Resolving code split
     // TODO improve logic here for all routes
-    if ( (/\/projects\/.\.bundle\.js/).test(req.url) ) {
-      const newUrl = req.url.replace('/projects/', `${__dirname}/`)
-      return res.sendFile(newUrl)
-    }
+
+    // console.log (/\/.\//)
+
+    // if ( (/\/projects\/.\.bundle\.js/).test(req.url) ) {
+    //   const newUrl = req.url.replace('/projects/', `${__dirname}/`)
+    //   return res.sendFile(newUrl)
+    // }
     const helmet = Helmet.renderStatic()
     const styleTags = sheet.getStyleTags()
     if (context.status === 404) {
@@ -83,6 +86,6 @@ app.get('*', (req, res) => {
   })
 })
 
-app.listen(process.env.PORT || 3000, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log('Server is listening')
 })
