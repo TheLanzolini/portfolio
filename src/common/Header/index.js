@@ -26,8 +26,7 @@ const HeaderContainer = styled.header`
 
 const links = [
   { name: 'Home', to: '/' },
-  { name: 'Projects', to: '/projects' },
-  { name: 'Contact', to: '/contact' },
+  { name: 'Groups', to: '/groups' },
   { name: 'About', to: '/about' },
 ]
 

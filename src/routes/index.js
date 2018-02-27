@@ -1,6 +1,6 @@
 import App from '../App.js'
 
-import { Home, About, Contact, Projects } from './sync'
+import { Home, About, Groups, Group } from './sync'
 import NotFound from 'pages/NotFound'
 
 const routes = [
@@ -16,15 +16,12 @@ const routes = [
       { path: '/about',
         component: About,
       },
-      { path: '/contact',
-        component: Contact,
-      },
-      { path: '/projects',
+      { path: '/groups',
         exact: true,
-        component: Projects,
+        component: Groups,
       },
-      { path: '/projects/:type',
-        component: Projects,
+      { path: '/group/:slug',
+        component: Group,
       },
       { path: '*',
         component: NotFound,
