@@ -1,44 +1,44 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import { gameLoaded } from 'reducers/GameReducer'
+import { groupsLoaded } from 'reducers/GroupsReducer'
 import { DataCall } from 'common/DataCall'
 import 'isomorphic-fetch'
 import Loading from 'common/Loading'
+import { NavLink } from 'react-router-dom'
 
-const apiUrl = 'https://staging.fantasygolf.pgatour.com/api/static-v6/pgaroster/game.json'
+const apiUrl = 'https://staging.fantasygolf.pgatour.com/api/static-v6/pgaroster/leagues/page/1/filter_by/public.json'
 
-class MatchupList extends DataCall {
+class GroupsList extends DataCall {
   constructor(props) {
     super(props)
     this.cancelUpdate = false
     this.data = null
     this.dataCall = (store) => fetch(apiUrl).then(res => res.json()).then(res => {
-      store.dispatch(gameLoaded(res))
+      store.dispatch(groupsLoaded(res))
       return Promise.resolve()
     })
     this.addDataCall(this.dataCall)
   }
 
   componentDidMount() {
-    if (!Object.keys(this.props.game).length) {
+    if (!Object.keys(this.props.groups).length) {
       fetch(apiUrl).then(res => res.json()).then(res => {
-        this.props.gameLoaded(res)
+        this.props.groupsLoaded(res)
       })
     }
   }
   render() {
-    if (!this.props.game || !this.props.game.tournaments) {
+    if (!this.props.groups || !this.props.groups.leagues) {
       return (<Loading />)
     }
-    const { tournaments } = this.props.game
+    const { leagues } = this.props.groups
     return (
       <div>
         {
-          Object.values(tournaments).map((tournament, index) => (
+          leagues.map((league, index) => (
             <div key={index}>
-              <img src={tournament.image_path} height="20px" />
-              <span>{tournament.name}</span>
+              <NavLink className="nav-link" to={`/group/${league.league_id}`}>{league.name}</NavLink>
             </div>
           ))
         }
@@ -48,13 +48,13 @@ class MatchupList extends DataCall {
 }
 
 const mapStateToProps = (state) => {
-  return { game: state.Game }
+  return { groups: state.Groups }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    gameLoaded: (data) => dispatch(gameLoaded(data)),
+    groupsLoaded: (data) => dispatch(groupsLoaded(data)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MatchupList)
+export default connect(mapStateToProps, mapDispatchToProps)(GroupsList)

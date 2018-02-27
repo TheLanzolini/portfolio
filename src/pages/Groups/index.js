@@ -1,5 +1,9 @@
 import React from 'react'
+import GroupsList from './GroupsList'
 
 export default () => (
-  <div>Groups</div>
+  <div>
+    Groups
+    <GroupsList />
+  </div>
 )

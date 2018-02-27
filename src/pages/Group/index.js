@@ -1,5 +1,8 @@
 import React from 'react'
+import GroupShow from './GroupShow'
 
 export default () => (
-  <div>Group</div>
+  <div>
+    <GroupShow />
+  </div>
 )
