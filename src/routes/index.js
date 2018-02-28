@@ -20,7 +20,7 @@ const routes = [
         exact: true,
         component: Groups,
       },
-      { path: '/group/:slug',
+      { path: '/group/:id',
         component: Group,
       },
       { path: '*',

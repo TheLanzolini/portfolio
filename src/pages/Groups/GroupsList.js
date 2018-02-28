@@ -38,7 +38,7 @@ class GroupsList extends DataCall {
         {
           leagues.map((league, index) => (
             <div key={index}>
-              <NavLink className="nav-link" to={`/group/${league.league_id}`}>{league.name}</NavLink>
+              <NavLink to={`/group/${league.league_id}`}>{league.name}</NavLink>
             </div>
           ))
         }
