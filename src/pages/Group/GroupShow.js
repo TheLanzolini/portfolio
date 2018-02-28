@@ -60,7 +60,7 @@ class GroupList extends DataCall {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.Group)
+  //console.log(state.Group)
   return { group: state.Group }
 }
 
