@@ -1,12 +1,16 @@
 # TODOs to do
 
-Dev
+#### Dev
 
-- [] husky prettier hooks
+- [x] husky prettier hooks
+- [x] env vars
 - [] testing
 
-Content
+#### Content
+
 - [] Skills
+- [] Website Stack Information
+- [] List of twitch alert clips
 - [] Projects
 - [] Champion showcase
 - [] Contact
@@ -14,20 +18,24 @@ Content
 - [] Triplebyte License
 - [x] LinkedIn embed
 
-FE Infra
+#### FE Infra
+
 - [x] Styled Components
 - [] Code splitting
 - [] Apollo front end
-- [] React Helmet
-- [] SEO
+- [x] React Helmet
+- [x] SEO
 - [] Redux
 - [] favicon
+- [] styled FE error page
 
-BE Infra
+#### BE Infra
+
 - [] Apollo server backend
 - [] LoL api keys
 - [] backend logging
 - [] server error page
 
-Bonus
+#### Bonus
+
 - [] figure out how tf to https on heroku w/ custom domain

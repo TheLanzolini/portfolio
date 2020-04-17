@@ -1,10 +1,14 @@
 import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import { Helmet } from 'react-helmet';
 import { StaticRouter } from 'react-router-dom';
+import serialize from 'serialize-javascript';
 import { ServerStyleSheet } from 'styled-components';
 
 import App from './app/App';
+
+const { APP_ENV, NODE_ENV } = process.env;
 
 let assets: any;
 
@@ -20,38 +24,43 @@ const server = express()
     const context = {};
     const sheet = new ServerStyleSheet();
     try {
-      const markup = renderToString(sheet.collectStyles(
-        <StaticRouter context={context} location={req.url}>
-          <App />
-        </StaticRouter>
-      ));
-      const styleTags = sheet.getStyleTags();
-      res.send(
-        `<!doctype html>
-      <html lang="">
-      <head>
-          <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-          <meta charSet='utf-8' />
-          <title>Razzle TypeScript</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          ${styleTags}
-          <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
-          ${
-        assets.client.css
-          ? `<link rel="stylesheet" href="${assets.client.css}">`
-          : ''
-        }
-            ${
-        process.env.NODE_ENV === 'production'
-          ? `<script src="${assets.client.js}" defer></script>`
-          : `<script src="${assets.client.js}" defer crossorigin></script>`
-        }
-      </head>
-      <body>
-          <div id="root">${markup}</div>
-      </body>
-  </html>`
+      const markup = renderToString(
+        sheet.collectStyles(
+          <StaticRouter context={context} location={req.url}>
+            <App />
+          </StaticRouter>
+        )
       );
+      const helmet = Helmet.renderStatic();
+      const styleTags = sheet.getStyleTags();
+      res.send(`
+        <!doctype html>
+        <html lang="">
+          <head ${helmet.htmlAttributes.toString()}>
+            ${helmet.title.toString()}
+            ${helmet.meta.toString()}
+            ${helmet.link.toString()}
+            ${styleTags}
+            <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+            ${
+              assets.client.css
+                ? `<link rel="stylesheet" href="${assets.client.css}">`
+                : ''
+            }
+            ${
+              process.env.NODE_ENV === 'production'
+                ? `<script src="${assets.client.js}" defer></script>`
+                : `<script src="${assets.client.js}" defer crossorigin></script>`
+            }
+          </head>
+          <body ${helmet.bodyAttributes.toString()}>
+            <div id="root">${markup}</div>
+          </body>
+          <script>
+            window.env = ${serialize({ APP_ENV, NODE_ENV })}
+          </script>
+        </html>
+      `);
     } catch (e) {
       console.log('Failed to render!');
       console.error(e);

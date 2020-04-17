@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:latest", "tslint-react"],
+  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
   "rules": {
     "align": [true, "parameters", "arguments", "statements"],
     "ban": false,
@@ -47,7 +47,7 @@
     ],
     "quotemark": [true, "single", "jsx-double"],
     "radix": true,
-    "semicolon": [true, "always"],
+    "semicolon": [true, "always", "ignore-bound-class-methods"],
     "switch-default": true,
     "trailing-comma": false,
     "triple-equals": [true, "allow-null-check"],
