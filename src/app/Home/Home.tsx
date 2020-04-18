@@ -10,7 +10,7 @@ const Example = styled.div`
   font-size: 100px;
 `;
 
-export const Home = () => {
+const Home = () => {
   const q = 'foo';
   const example = { foo: { render: <div>hello</div> } };
   const [thing, setThing] = useState(q);
@@ -37,3 +37,5 @@ export const Home = () => {
     </Layout>
   );
 };
+
+export default Home;

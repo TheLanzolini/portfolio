@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from '../Layout';
 
-export const WebsiteStack = () => (
+const WebsiteStack = () => (
   <Layout
     title="Portfolio website stack information"
     description="This site is built on a SSR React stack with typescript and GraphQL, come check it out!"
@@ -9,3 +9,5 @@ export const WebsiteStack = () => (
     <span>website stack is</span>
   </Layout>
 );
+
+export default WebsiteStack;

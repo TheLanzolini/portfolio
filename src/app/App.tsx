@@ -4,12 +4,18 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router';
 import { Link, Route, Switch } from 'react-router-dom';
+import { getComponentAsync } from 'universal-async-component';
 import { ROOT_URL } from './constants/env';
 import { ErrorBoundary } from './ErrorBoundary';
 
 // Routes
-import { Home } from './Home/Home';
-import { WebsiteStack } from './WebsiteStack/WebsiteStack';
+// import { Home } from './Home/Home';
+// import { WebsiteStack } from './WebsiteStack/WebsiteStack';
+
+const Home = getComponentAsync({ loader: () => import('./Home/Home') });
+const WebsiteStack = getComponentAsync({
+  loader: () => import('./WebsiteStack/WebsiteStack'),
+});
 
 const title = 'The works and skills of a dev';
 const description =

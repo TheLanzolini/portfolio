@@ -4,3 +4,4 @@ declare module '*.svg' {
 }
 
 declare module 'styled-components';
+declare module 'universal-async-component';

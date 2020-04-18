@@ -1,14 +1,24 @@
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
 import { StaticRouter } from 'react-router-dom';
 import serialize from 'serialize-javascript';
 import { ServerStyleSheet } from 'styled-components';
+import { CaptureChunks } from 'universal-async-component';
 
 import App from './app/App';
 
 const { APP_ENV, NODE_ENV } = process.env;
+
+const clientStatsJson = fs.readFileSync(
+  path.resolve('./build/client-stats.json'),
+  'utf-8'
+);
+const clientStats = JSON.parse(clientStatsJson);
+console.log('!!!!', clientStats);
 
 let assets: any;
 
@@ -23,12 +33,18 @@ const server = express()
   .get('/*', (req: express.Request, res: express.Response) => {
     const context = {};
     const sheet = new ServerStyleSheet();
+    const additionalChunks: any[] = [];
     try {
       const markup = renderToString(
         sheet.collectStyles(
-          <StaticRouter context={context} location={req.url}>
-            <App />
-          </StaticRouter>
+          <CaptureChunks
+            statsChunks={clientStats.chunks}
+            additionalChunks={additionalChunks}
+          >
+            <StaticRouter context={context} location={req.url}>
+              <App />
+            </StaticRouter>
+          </CaptureChunks>
         )
       );
       const helmet = Helmet.renderStatic();
