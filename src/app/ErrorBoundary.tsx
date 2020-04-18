@@ -21,6 +21,11 @@ class ErrorBoundary extends React.Component<{}, ErrorBoundaryState> {
     this.setState({ error });
   };
 
+  private resetError = (): void => {
+    // this may or may not reset the view depending on where the error was thrown.
+    this.setState({ error: null });
+  };
+
   public render() {
     const { error } = this.state;
     const { children } = this.props;
@@ -36,6 +41,7 @@ class ErrorBoundary extends React.Component<{}, ErrorBoundaryState> {
           appreciated!
           <br />
           <a href="mailto:thelanzolini@gmail.com">Email me!</a>
+          <button onClick={this.resetError}>dismiss</button>
         </p>
       </ErrorWrapper>
     );

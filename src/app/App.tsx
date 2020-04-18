@@ -1,19 +1,34 @@
 import './App.css';
 
+import loadable from '@loadable/component';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router';
 import { Link, Route, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 import { ROOT_URL } from './constants/env';
 import { ErrorBoundary } from './ErrorBoundary';
 
 // Routes
-import { Home } from './Home/Home';
-import { WebsiteStack } from './WebsiteStack/WebsiteStack';
+// import { Home } from './Home/Home';
+// import { WebsiteStack } from './WebsiteStack/WebsiteStack';
 
 const title = 'The works and skills of a dev';
 const description =
   'My name is Alex Lanzoni and this is my portfolio. I have some projects and links here, but also I made this website as a showcase of my engineering know how, the source code is available on github at https://github.com/thelanzolini/portfolio';
+
+const ChunkLoading = styled.div`
+  padding-bottom: 100vh;
+`;
+
+const HomeComponent = loadable(() => import('./Home/Home'), {
+  fallback: <ChunkLoading />,
+});
+
+const WebsiteStackComponent = loadable(
+  () => import('./WebsiteStack/WebsiteStack'),
+  { fallback: <ChunkLoading /> }
+);
 
 const App = () => {
   const { pathname } = useLocation();
@@ -50,8 +65,8 @@ const App = () => {
       <Link to="/">Home</Link>
       <Link to="/website-stack">Website Stack</Link>
       <Switch>
-        <Route exact={true} path="/" component={Home} />
-        <Route path="/website-stack" component={WebsiteStack} />
+        <Route exact={true} path="/" component={HomeComponent} />
+        <Route path="/website-stack" component={WebsiteStackComponent} />
       </Switch>
     </ErrorBoundary>
   );

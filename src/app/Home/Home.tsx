@@ -10,13 +10,13 @@ const Example = styled.div`
   font-size: 100px;
 `;
 
-export const Home = () => {
+const Home = () => {
   const q = 'foo';
   const example = { foo: { render: <div>hello</div> } };
   const [thing, setThing] = useState(q);
   return (
     <Layout>
-      <div onClick={() => setThing('asd')}>hello world!</div>
+      <Example onClick={() => setThing('asd')}>hello world!</Example>
       {example[thing].render}
       <div
         className="LI-profile-badge"
@@ -37,3 +37,5 @@ export const Home = () => {
     </Layout>
   );
 };
+
+export default Home;
