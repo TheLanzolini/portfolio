@@ -21,7 +21,7 @@
 #### FE Infra
 
 - [x] Styled Components
-- [] Code splitting
+- [x] Code splitting
 - [] Apollo front end
 - [x] React Helmet
 - [x] SEO
