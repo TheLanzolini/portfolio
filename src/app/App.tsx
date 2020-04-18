@@ -21,17 +21,40 @@ const ChunkLoading = styled.div`
   padding-bottom: 100vh;
 `;
 
-const HomeComponent = loadable(() => import('./Home/Home'), {
+// const loadHome = /* #__LOADABLE__ */ () => import('./Home/Home');
+const Home = loadable(() => import('./Home/Home'), {
   fallback: <ChunkLoading />,
 });
+// const loadWebsite = /* #__LOADABLE__ */ () =>
+//   import('./WebsiteStack/WebsiteStack');
+const WebsiteStack = loadable(() => import('./WebsiteStack/WebsiteStack'), {
+  fallback: <ChunkLoading />,
+});
+// class Home extends React.Component<{}, { Component: any }> {
+//   constructor(props: any) {
+//     super(props);
+//     this.state = {
+//       Component: null,
+//     };
+//     const promise = loadHome().then((r) => {
+//       console.log(r.default);
+//       this.setState({ Component: r.default });
+//     });
+//     console.log(promise);
+//   }
 
-const WebsiteStackComponent = loadable(
-  () => import('./WebsiteStack/WebsiteStack'),
-  { fallback: <ChunkLoading /> }
-);
+//   public render() {
+//     const { Component } = this.state;
+//     // tslint:disable-next-line
+//     return Component ? <Component /> : null;
+//   }
+// }
 
 const App = () => {
   const { pathname } = useLocation();
+  // const WebsiteStack = () => <div />;
+  // console.log(loadHome);
+  // console.log(loadWebsite);
   return (
     <ErrorBoundary>
       <Helmet
@@ -65,8 +88,8 @@ const App = () => {
       <Link to="/">Home</Link>
       <Link to="/website-stack">Website Stack</Link>
       <Switch>
-        <Route exact={true} path="/" component={HomeComponent} />
-        <Route path="/website-stack" component={WebsiteStackComponent} />
+        <Route exact={true} path="/" component={Home} />
+        <Route path="/website-stack" component={WebsiteStack} />
       </Switch>
     </ErrorBoundary>
   );

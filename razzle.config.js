@@ -9,15 +9,15 @@ const LoadableBabelPlugin = require('@loadable/babel-plugin');
 
 const filename = path.resolve(__dirname, 'build');
 
-const babelLoader = {
-  loader: 'babel-loader',
-  options: {
-    plugins: [LoadableBabelPlugin],
-  },
-};
-
 module.exports = {
-  // plugins: ['typescript'],
+  plugins: [
+    {
+      name: 'typescript',
+      options: {
+        useBabel: true,
+      },
+    },
+  ],
   modify: (config, { dev, target }) => {
     const plugins =
       target === 'web'
@@ -32,17 +32,7 @@ module.exports = {
     return dev
       ? {
           ...config,
-          optimization:
-            target === 'web'
-              ? {
-                  ...config.optimization,
-                  runtimeChunk: true,
-                  splitChunks: {
-                    chunks: 'all',
-                    name: dev,
-                  },
-                }
-              : config.optimization,
+          optimization: config.optimization,
           plugins,
           module: {
             ...config.module,
@@ -51,7 +41,6 @@ module.exports = {
               {
                 test: /.ts(x?)$/,
                 use: [
-                  ...(target === 'web' ? [babelLoader] : []),
                   {
                     loader: 'ts-loader',
                     options: {
@@ -72,12 +61,9 @@ module.exports = {
           plugins,
         };
   },
-  // modifyBabelOptions: (options) => {
-  //   console.log('I AM HEREEEEE', options);
-  //   return {
-  //     ...options,
-  //     babelrc: false,
-  //     plugins: [LoadableBabelPlugin],
-  //   };
-  // },
+  modifyBabelOptions: (options) => ({
+    ...options,
+    babelrc: false,
+    plugins: [LoadableBabelPlugin],
+  }),
 };
