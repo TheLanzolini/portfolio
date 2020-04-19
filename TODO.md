@@ -5,6 +5,8 @@
 - [x] husky prettier hooks
 - [x] env vars
 - [] testing
+- [x] bundle analyzer
+- [] remove lodash
 
 #### Content
 

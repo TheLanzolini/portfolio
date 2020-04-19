@@ -16,5 +16,7 @@ declare global {
 
   interface Window {
     env: IWindowEnv;
+    __APOLLO_STATE__: any;
+    __REDUX_STATE__: any;
   }
 }

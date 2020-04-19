@@ -6,8 +6,13 @@ const createStyledComponentsTransformer = require('typescript-plugin-styled-comp
 const styledComponentsTransformer = createStyledComponentsTransformer();
 const LoadableWebpackPlugin = require('@loadable/webpack-plugin');
 const LoadableBabelPlugin = require('@loadable/babel-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+const { ANALYZE } = process.env;
 
 const filename = path.resolve(__dirname, 'build');
+
+console.log(path.resolve(__dirname, 'node_modules', 'styled-components'));
 
 module.exports = {
   plugins: [
@@ -27,13 +32,26 @@ module.exports = {
               outputAsset: false,
               writeToDisk: { filename },
             }),
+            ...(ANALYZE ? [new BundleAnalyzerPlugin()] : []),
           ]
         : config.plugins;
+    const resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        'styled-components': path.resolve(
+          __dirname,
+          'node_modules',
+          'styled-components'
+        ),
+      },
+    };
+
     return dev
       ? {
           ...config,
-          optimization: config.optimization,
           plugins,
+          resolve,
           module: {
             ...config.module,
             rules: [
@@ -58,7 +76,16 @@ module.exports = {
         }
       : {
           ...config,
+          resolve,
           plugins,
+          optimization: {
+            ...config.optimization,
+            runtimeChunk: true,
+            splitChunks: {
+              chunks: 'all',
+              name: dev,
+            },
+          },
         };
   },
   modifyBabelOptions: (options) => ({

@@ -13,11 +13,22 @@
     "node": "12.16.x"
   },
   "dependencies": {
+    "@apollo/react-ssr": "^3.1.5",
     "@loadable/component": "^5.12.0",
     "@loadable/server": "^5.12.0",
+    "@types/lodash": "^4.14.150",
+    "apollo-cache-inmemory": "^1.6.5",
+    "apollo-client": "^2.6.8",
+    "apollo-link-http": "^1.5.17",
+    "apollo-server-express": "^2.12.0",
     "babel-loader": "^8.1.0",
     "express": "^4.17.1",
+    "graphql": "^15.0.0",
+    "graphql-tag": "^2.10.3",
+    "lodash": "^4.17.15",
+    "node-fetch": "^2.6.0",
     "react": "^16.8.6",
+    "react-apollo": "^3.1.5",
     "react-dom": "^16.8.6",
     "react-helmet": "^6.0.0",
     "react-router": "^5.1.2",
@@ -48,7 +59,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
     "typescript": "^3.5.3",
-    "typescript-plugin-styled-components": "^1.4.4"
+    "typescript-plugin-styled-components": "^1.4.4",
+    "webpack-bundle-analyzer": "^3.7.0"
   },
   "jest": {
     "transform": {

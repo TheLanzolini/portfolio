@@ -1,7 +1,15 @@
+import { getDataFromTree } from '@apollo/react-ssr';
 import { ChunkExtractor, ChunkExtractorManager } from '@loadable/server';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
+import { ApolloServer, gql } from 'apollo-server-express';
 import express from 'express';
+import { filter, find } from 'lodash';
+import fetch from 'node-fetch';
 import path from 'path';
 import React from 'react';
+import { ApolloProvider } from 'react-apollo';
 import { renderToString } from 'react-dom/server';
 import { Helmet } from 'react-helmet';
 import { StaticRouter } from 'react-router-dom';
@@ -22,23 +30,120 @@ const syncLoadAssets = () => {
 };
 syncLoadAssets();
 
-const server = express()
+const typeDefs = `
+  type Author {
+    id: Int!
+    firstName: String
+    lastName: String
+    """
+    the list of Posts by this author
+    """
+    posts: [Post]
+  }
+
+  type Post {
+    id: Int!
+    title: String
+    author: Author
+    votes: Int
+  }
+
+  # the schema allows the following query:
+  type Query {
+    posts: [Post]
+    author(id: Int!): Author
+  }
+
+  # this schema allows the following mutation:
+  type Mutation {
+    upvotePost (
+      postId: Int!
+    ): Post
+  }
+`;
+
+// example data
+const authors = [
+  { id: 1, firstName: 'Tom', lastName: 'Coleman' },
+  { id: 2, firstName: 'Sashko', lastName: 'Stubailo' },
+  { id: 3, firstName: 'Mikhail', lastName: 'Novikov' },
+];
+
+const posts = [
+  { id: 1, authorId: 1, title: 'Introduction to GraphQL', votes: 2 },
+  { id: 2, authorId: 2, title: 'Welcome to Meteor', votes: 3 },
+  { id: 3, authorId: 2, title: 'Advanced GraphQL', votes: 1 },
+  { id: 4, authorId: 3, title: 'Launchpad is Cool', votes: 7 },
+];
+
+const resolvers = {
+  Query: {
+    author: (_: any, { id }: { id: any }) => find(authors, { id }),
+    posts: () => posts,
+  },
+
+  Mutation: {
+    upvotePost: (_: any, { postId }: { postId: any }) => {
+      const post = find(posts, { id: postId });
+      if (!post) {
+        throw new Error(`Couldn't find post with id ${postId}`);
+      }
+      post.votes += 1;
+      return post;
+    },
+  },
+
+  Author: {
+    posts: (author: any) => filter(posts, { authorId: author.id }),
+  },
+
+  Post: {
+    author: (post: any) => find(authors, { id: post.authorId }),
+  },
+};
+
+const link = new HttpLink({
+  // tslint:disable:next-line
+  fetch,
+  uri: 'http://localhost:3000/graphql',
+});
+
+const apolloServer = new ApolloServer({ typeDefs, resolvers });
+
+const server = express();
+apolloServer.applyMiddleware({ app: server, path: '/graphql' });
+server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR!))
-  .get('/*', (req: express.Request, res: express.Response) => {
+  .get('/*', async (req: express.Request, res: express.Response) => {
+    const client = new ApolloClient({
+      cache: new InMemoryCache(),
+      link,
+      ssrMode: true,
+    });
     const context = {};
     const sheet = new ServerStyleSheet();
     const extractor = new ChunkExtractor({
       entrypoints: ['client'],
       statsFile,
     });
+    await getDataFromTree(
+      <ApolloProvider client={client}>
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      </ApolloProvider>
+    );
+    const initialApolloState = client.extract();
     try {
       const markup = renderToString(
         sheet.collectStyles(
           <ChunkExtractorManager extractor={extractor}>
-            <StaticRouter context={context} location={req.url}>
-              <App />
-            </StaticRouter>
+            <ApolloProvider client={client}>
+              <StaticRouter context={context} location={req.url}>
+                <App />
+              </StaticRouter>
+            </ApolloProvider>
           </ChunkExtractorManager>
         )
       );
@@ -74,6 +179,11 @@ const server = express()
           </body>
           <script>
             window.env = ${serialize({ APP_ENV, NODE_ENV })}
+          </script>
+          <script>
+            window.__APOLLO_STATE__ = ${JSON.stringify(
+              initialApolloState
+            ).replace(/</g, '\\u003c')};
           </script>
           ${chunkedScriptTags}
         </html>

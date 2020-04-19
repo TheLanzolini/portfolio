@@ -2,8 +2,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Layout } from '../Layout';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
 
 import './Home.css';
+import { ExecutionResult } from 'graphql';
+
+const query = gql`
+  query MyQuery {
+    posts {
+      id
+    }
+  }
+`;
 
 const Example = styled.div`
   color: red;
@@ -34,6 +45,14 @@ const Home = () => {
           Alex Lanzoni
         </a>
       </div>
+      <Query query={query}>
+        {(result: ExecutionResult) => {
+          // console.log(result.data);
+          if (result.loading) return <span>Loading...</span>;
+          if (result.error) return <span>Error happened!</span>;
+          return <div>{JSON.stringify(result.data.posts)}</div>;
+        }}
+      </Query>
     </Layout>
   );
 };
