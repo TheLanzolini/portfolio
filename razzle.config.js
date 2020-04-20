@@ -45,6 +45,18 @@ module.exports = {
       },
     };
 
+    const optimization =
+      target === 'web'
+        ? {
+            ...config.optimization,
+            runtimeChunk: true,
+            splitChunks: {
+              chunks: 'all',
+              name: dev,
+            },
+          }
+        : config.optimization;
+
     return dev
       ? {
           ...config,
@@ -76,14 +88,7 @@ module.exports = {
           ...config,
           resolve,
           plugins,
-          optimization: {
-            ...config.optimization,
-            runtimeChunk: true,
-            splitChunks: {
-              chunks: 'all',
-              name: dev,
-            },
-          },
+          optimization,
         };
   },
   modifyBabelOptions: (options) => ({

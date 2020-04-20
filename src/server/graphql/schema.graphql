@@ -1,0 +1,17 @@
+# import Author from './schema/author.graphql'
+# import Post from './schema/post.graphql'
+# import Project from './schema/project.graphql'
+
+# the schema allows the following query:
+type Query {
+  posts: [Post]
+  post: Post
+  author(id: Int!): Author
+  projects: [Project]
+  project(id: String!): Project
+}
+
+# this schema allows the following mutation:
+type Mutation {
+  upvotePost(postId: Int!): Post
+}

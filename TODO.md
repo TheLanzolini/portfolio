@@ -37,7 +37,8 @@
 - [] LoL api keys
 - [] backend logging
 - [] server error page
-- [] actual organized graphql
+- [x] organized graphql
+- [] actual graphql
 
 #### Bonus
 
