@@ -103,7 +103,6 @@ const resolvers = {
 };
 
 const link = new HttpLink({
-  // tslint:disable:next-line
   fetch,
   uri: 'http://localhost:3000/graphql',
 });

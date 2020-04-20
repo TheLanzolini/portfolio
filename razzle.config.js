@@ -12,8 +12,6 @@ const { ANALYZE } = process.env;
 
 const filename = path.resolve(__dirname, 'build');
 
-console.log(path.resolve(__dirname, 'node_modules', 'styled-components'));
-
 module.exports = {
   plugins: [
     {

@@ -9,14 +9,10 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from './app/App';
 
-console.log(window.__APOLLO_STATE__);
-
 const cache = new InMemoryCache().restore(window.__APOLLO_STATE__);
-
-// delete window.__APOLLO_STATE__;
+delete window.__APOLLO_STATE__;
 
 const link = new HttpLink({
-  // tslint:disable:next-line
   uri: 'http://localhost:3000/graphql',
 });
 

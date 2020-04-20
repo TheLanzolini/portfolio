@@ -1,17 +1,25 @@
-/* tslint:disable */
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Layout } from '../Layout';
-import { Query } from 'react-apollo';
-import gql from 'graphql-tag';
 
 import './Home.css';
-import { ExecutionResult } from 'graphql';
+
+interface Post {
+  id: number;
+  title: string;
+}
+
+interface PostData {
+  posts: Post[];
+}
 
 const query = gql`
   query MyQuery {
     posts {
       id
+      title
     }
   }
 `;
@@ -25,6 +33,7 @@ const Home = () => {
   const q = 'foo';
   const example = { foo: { render: <div>hello</div> } };
   const [thing, setThing] = useState(q);
+  const { loading, data, error } = useQuery<PostData>(query);
   return (
     <Layout>
       <Example onClick={() => setThing('asd')}>hello world!</Example>
@@ -45,14 +54,11 @@ const Home = () => {
           Alex Lanzoni
         </a>
       </div>
-      <Query query={query}>
-        {(result: ExecutionResult) => {
-          // console.log(result.data);
-          if (result.loading) return <span>Loading...</span>;
-          if (result.error) return <span>Error happened!</span>;
-          return <div>{JSON.stringify(result.data.posts)}</div>;
-        }}
-      </Query>
+      <div>
+        {loading && 'Loading'}
+        {error && 'Error'}
+        {data && JSON.stringify(data)}
+      </div>
     </Layout>
   );
 };

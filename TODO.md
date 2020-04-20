@@ -24,7 +24,7 @@
 
 - [x] Styled Components
 - [x] Code splitting
-- [] Apollo front end
+- [x] Apollo front end
 - [x] React Helmet
 - [x] SEO
 - [] Redux
@@ -33,10 +33,11 @@
 
 #### BE Infra
 
-- [] Apollo server backend
+- [x] Apollo server backend
 - [] LoL api keys
 - [] backend logging
 - [] server error page
+- [] actual organized graphql
 
 #### Bonus
 
