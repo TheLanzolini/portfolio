@@ -1,20 +1,16 @@
-import * as author from './resolvers/author';
-import * as post from './resolvers/post';
 import * as project from './resolvers/project';
+import * as skill from './resolvers/skill';
 
 const resolvers = {
-  Author: author.Fields,
   Query: {
-    ...author.Query,
     ...project.Query,
-    ...post.Query,
+    ...skill.Query,
   },
 
-  Mutation: {
-    ...post.Mutation,
-  },
+  // Mutation: {},
 
-  Post: post.Fields,
+  Project: project.Fields,
+  Skill: skill.Fields,
 };
 
 export { resolvers };

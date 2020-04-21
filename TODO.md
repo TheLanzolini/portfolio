@@ -38,7 +38,7 @@
 - [] backend logging
 - [] server error page
 - [x] organized graphql
-- [] actual graphql
+- [x] actual graphql
 
 #### Bonus
 

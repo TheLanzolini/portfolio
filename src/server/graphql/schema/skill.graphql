@@ -1,0 +1,8 @@
+# import Project from './project.graphql'
+
+type Skill {
+  id: String
+  title: String
+  description: String
+  projects: [Project]
+}

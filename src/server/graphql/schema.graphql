@@ -1,17 +1,21 @@
-# import Author from './schema/author.graphql'
-# import Post from './schema/post.graphql'
 # import Project from './schema/project.graphql'
+# import Skill from './schema/skill.graphql'
+
+enum Experience {
+  PROFICIENT
+  EXPERIENCED
+  FAMILIAR
+}
 
 # the schema allows the following query:
 type Query {
-  posts: [Post]
-  post: Post
-  author(id: Int!): Author
   projects: [Project]
   project(id: String!): Project
+  skill(id: Int, experience: Experience): [Skill]
+  skills: [Skill]
 }
 
 # this schema allows the following mutation:
-type Mutation {
-  upvotePost(postId: Int!): Post
-}
+# type Mutation {
+#   upvotePost(postId: Int!): Post
+# }
