@@ -4,14 +4,11 @@ import loadable from '@loadable/component';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { useLocation } from 'react-router';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { ROOT_URL } from './constants/env';
 import { ErrorBoundary } from './ErrorBoundary';
-
-// Routes
-// import { Home } from './Home/Home';
-// import { WebsiteStack } from './WebsiteStack/WebsiteStack';
+import { Navigation } from './Navigation/Navigation';
 
 const title = 'The works and skills of a dev';
 const description =
@@ -21,40 +18,24 @@ const ChunkLoading = styled.div`
   padding-bottom: 100vh;
 `;
 
-// const loadHome = /* #__LOADABLE__ */ () => import('./Home/Home');
 const Home = loadable(() => import('./Home/Home'), {
   fallback: <ChunkLoading />,
 });
-// const loadWebsite = /* #__LOADABLE__ */ () =>
-//   import('./WebsiteStack/WebsiteStack');
+
 const WebsiteStack = loadable(() => import('./WebsiteStack/WebsiteStack'), {
   fallback: <ChunkLoading />,
 });
-// class Home extends React.Component<{}, { Component: any }> {
-//   constructor(props: any) {
-//     super(props);
-//     this.state = {
-//       Component: null,
-//     };
-//     const promise = loadHome().then((r) => {
-//       console.log(r.default);
-//       this.setState({ Component: r.default });
-//     });
-//     console.log(promise);
-//   }
 
-//   public render() {
-//     const { Component } = this.state;
-//     // tslint:disable-next-line
-//     return Component ? <Component /> : null;
-//   }
-// }
+const Projects = loadable(() => import('./Projects/Projects'), {
+  fallback: <ChunkLoading />,
+});
+
+const Project = loadable(() => import('./Project/Project'), {
+  fallback: <ChunkLoading />,
+});
 
 const App = () => {
   const { pathname } = useLocation();
-  // const WebsiteStack = () => <div />;
-  // console.log(loadHome);
-  // console.log(loadWebsite);
   return (
     <ErrorBoundary>
       <Helmet
@@ -85,11 +66,12 @@ const App = () => {
         <meta name="twitter:site" content="@thelanzolini" />
         <meta name="twitter:creator" content="@thelanzolini" />
       </Helmet>
-      <Link to="/">Home</Link>
-      <Link to="/website-stack">Website Stack</Link>
+      <Navigation />
       <Switch>
         <Route exact={true} path="/" component={Home} />
         <Route path="/website-stack" component={WebsiteStack} />
+        <Route path="/projects" component={Projects} />
+        <Route path="/project/:projectSlug" component={Project} />
       </Switch>
     </ErrorBoundary>
   );

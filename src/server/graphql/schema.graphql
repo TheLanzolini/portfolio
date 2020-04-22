@@ -10,7 +10,7 @@ enum Experience {
 # the schema allows the following query:
 type Query {
   projects: [Project]
-  project(id: String!): Project
+  project(id: String, slug: String): Project
   skill(id: Int, experience: Experience): [Skill]
   skills: [Skill]
 }

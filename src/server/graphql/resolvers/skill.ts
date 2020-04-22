@@ -1,4 +1,5 @@
 import { getId } from '../../utils/get-id';
+import { getSlug } from '../../utils/get-slug';
 import { StaticProject, staticProjects } from '../constants/projects';
 import { EXPERIENCE, StaticSkill, staticSkills } from '../constants/skills';
 import { Project } from './project';
@@ -47,6 +48,7 @@ export const Fields = {
       .map(
         ({ title }: StaticProject): Project => ({
           id: getId(title),
+          slug: getSlug(title),
           title,
         })
       ),

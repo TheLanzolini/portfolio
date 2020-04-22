@@ -59,16 +59,15 @@ server
       entrypoints: ['client'],
       statsFile,
     });
-    // TODO add error handling for fails here
-    await getDataFromTree(
-      <ApolloProvider client={client}>
-        <StaticRouter context={context} location={req.url}>
-          <App />
-        </StaticRouter>
-      </ApolloProvider>
-    );
-    const initialApolloState = client.extract();
     try {
+      await getDataFromTree(
+        <ApolloProvider client={client}>
+          <StaticRouter context={context} location={req.url}>
+            <App />
+          </StaticRouter>
+        </ApolloProvider>
+      );
+      const initialApolloState = client.extract();
       const markup = renderToString(
         sheet.collectStyles(
           <ChunkExtractorManager extractor={extractor}>
