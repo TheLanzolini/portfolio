@@ -1,3 +1,4 @@
+// tslint:disable no-console
 import express from 'express';
 
 // this require is necessary for server HMR to recover from error

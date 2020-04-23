@@ -24,7 +24,6 @@ const Skill = (props: RouteComponentProps<SkillParams>) => {
   if (error || data === undefined) {
     return 'Error!';
   }
-  console.log(data);
   return (
     <div>
       <h1>{data.skill.title}</h1>

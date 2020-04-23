@@ -121,7 +121,9 @@ server
         </html>
       `);
     } catch (e) {
+      // tslint:disable-next-line no-console
       console.log('Failed to render!');
+      // tslint:disable-next-line no-console
       console.error(e);
       res.status(500);
       res.setHeader('Cache-Control', 'no-store');

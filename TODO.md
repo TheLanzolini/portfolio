@@ -44,3 +44,4 @@
 
 - [] figure out how tf to https on heroku w/ custom domain
 - [] maybe add storybook and storyshot testing
+- [] maybe decide to use airtable as database

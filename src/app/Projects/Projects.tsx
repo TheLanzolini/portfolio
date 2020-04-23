@@ -11,7 +11,6 @@ const Projects = () => {
   if (error) {
     return 'Error fetching';
   }
-  console.log(process.browser, data);
   return (
     <div>
       {data &&
