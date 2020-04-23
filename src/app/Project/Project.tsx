@@ -1,22 +1,11 @@
 import { useQuery } from '@apollo/react-hooks';
 import React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 import { ProjectQueryVars } from '../../server/graphql/resolvers/project';
-import { Skill } from '../../server/graphql/resolvers/skill';
-import { PROJECT_QUERY } from './project.graphql';
+import { PROJECT_QUERY, ProjectData } from './project.graphql';
 
 interface ProjectParams {
   projectSlug: string;
-}
-
-interface ProjectDatum {
-  id: string;
-  title: string;
-  skills: [Skill];
-}
-
-interface ProjectData {
-  project: ProjectDatum;
 }
 
 const Project = (props: RouteComponentProps<ProjectParams>) => {
@@ -37,14 +26,15 @@ const Project = (props: RouteComponentProps<ProjectParams>) => {
   if (error || data === undefined) {
     return 'Error';
   }
-  console.log(data);
   return (
     <div>
-      <div>{data.project.title}</div>
+      <h1>{data.project.title}</h1>
       <div>Skills:</div>
       <div>
         {data.project.skills.map((skill) => (
-          <div key={skill.id}>{skill.title}</div>
+          <div key={skill.id}>
+            <Link to={`/skill/${skill.slug}`}>{skill.title}</Link>
+          </div>
         ))}
       </div>
     </div>

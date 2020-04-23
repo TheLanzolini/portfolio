@@ -1,19 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Skill } from '../../server/graphql/resolvers/skill';
-import { PROJECTS_QUERY } from './projects.graphql';
-
-interface ProjectDatum {
-  id: string;
-  slug: string;
-  title: string;
-  skills: Skill[];
-}
-
-interface ProjectsData {
-  projects: ProjectDatum[];
-}
+import { PROJECTS_QUERY, ProjectsData } from './projects.graphql';
 
 const Projects = () => {
   const { loading, error, data } = useQuery<ProjectsData>(PROJECTS_QUERY);

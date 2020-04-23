@@ -38,13 +38,6 @@ export const staticSkills: StaticSkill[] = [
     title: 'GraphQL',
   },
   {
-    description: `
-      Lorem Ipsum Dolor Sit Amet
-    `,
-    experience: EXPERIENCE.FAMILIAR,
-    title: 'Clojure',
-  },
-  {
     description: 'Lorem Ipsum',
     experience: EXPERIENCE.PROFICIENT,
     title: 'React',
@@ -103,11 +96,6 @@ export const staticSkills: StaticSkill[] = [
     description: 'Lorem Ipsum',
     experience: EXPERIENCE.PROFICIENT,
     title: 'CSS-in-JS',
-  },
-  {
-    description: 'Lorem Ipsum',
-    experience: EXPERIENCE.PROFICIENT,
-    title: 'Redux',
   },
   {
     description: 'Lorem Ipsum',

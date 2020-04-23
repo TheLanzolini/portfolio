@@ -3,6 +3,7 @@
 type Skill {
   id: String
   title: String
+  slug: String
   description: String
   projects: [Project]
 }

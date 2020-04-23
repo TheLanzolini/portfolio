@@ -6,11 +6,11 @@
 - [x] env vars
 - [] testing
 - [x] bundle analyzer
-- [] remove lodash
+- [x] remove lodash
 
 #### Content
 
-- [] Skills
+- [x] Skills
 - [] Website Stack Information
 - [] List of twitch alert clips
 - [] Projects
@@ -43,3 +43,4 @@
 #### Bonus
 
 - [] figure out how tf to https on heroku w/ custom domain
+- [] maybe add storybook and storyshot testing

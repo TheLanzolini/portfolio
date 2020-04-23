@@ -11,8 +11,8 @@ enum Experience {
 type Query {
   projects: [Project]
   project(id: String, slug: String): Project
-  skill(id: Int, experience: Experience): [Skill]
-  skills: [Skill]
+  skill(id: String, slug: String): Skill
+  skills(experience: Experience): [Skill]
 }
 
 # this schema allows the following mutation:

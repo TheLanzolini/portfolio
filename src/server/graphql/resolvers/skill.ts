@@ -1,3 +1,4 @@
+import { ValidationError } from 'apollo-server-express';
 import { getId } from '../../utils/get-id';
 import { getSlug } from '../../utils/get-slug';
 import { StaticProject, staticProjects } from '../constants/projects';
@@ -6,6 +7,7 @@ import { Project } from './project';
 
 export interface Skill extends StaticSkill {
   id: string;
+  slug: string;
 }
 
 export interface SkillsQueryVars {
@@ -14,7 +16,8 @@ export interface SkillsQueryVars {
 }
 
 export interface SkillQueryVars {
-  id: string;
+  id?: string;
+  slug?: string;
 }
 
 export const skills: Skill[] = new Array(...staticSkills).map(
@@ -22,13 +25,18 @@ export const skills: Skill[] = new Array(...staticSkills).map(
     description,
     experience,
     id: getId(title),
+    slug: getSlug(title),
     title,
   })
 );
 
 export const Query = {
-  skill: (_: null, { id }: SkillQueryVars): Skill | undefined =>
-    skills.find((s) => s.id === id),
+  skill: (_: null, { id, slug }: SkillQueryVars): Skill | undefined => {
+    if (!id && !slug) {
+      throw new ValidationError('id or slug must be defined in the params');
+    }
+    return skills.find((s) => s.id === id || s.slug === slug);
+  },
   skills: (_: null, { id, experience }: SkillsQueryVars): Skill[] => {
     if (id) {
       const targetSkill = skills.find((s) => s.id === id);

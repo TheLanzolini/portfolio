@@ -18,21 +18,24 @@ const ChunkLoading = styled.div`
   padding-bottom: 100vh;
 `;
 
-const Home = loadable(() => import('./Home/Home'), {
+const loadableOpts = {
   fallback: <ChunkLoading />,
-});
+};
 
-const WebsiteStack = loadable(() => import('./WebsiteStack/WebsiteStack'), {
-  fallback: <ChunkLoading />,
-});
+const Home = loadable(() => import('./Home/Home'), loadableOpts);
 
-const Projects = loadable(() => import('./Projects/Projects'), {
-  fallback: <ChunkLoading />,
-});
+const WebsiteStack = loadable(
+  () => import('./WebsiteStack/WebsiteStack'),
+  loadableOpts
+);
 
-const Project = loadable(() => import('./Project/Project'), {
-  fallback: <ChunkLoading />,
-});
+const Projects = loadable(() => import('./Projects/Projects'), loadableOpts);
+
+const Project = loadable(() => import('./Project/Project'), loadableOpts);
+
+const Skills = loadable(() => import('./Skills/Skills'), loadableOpts);
+
+const Skill = loadable(() => import('./Skill/Skill'), loadableOpts);
 
 const App = () => {
   const { pathname } = useLocation();
@@ -72,6 +75,8 @@ const App = () => {
         <Route path="/website-stack" component={WebsiteStack} />
         <Route path="/projects" component={Projects} />
         <Route path="/project/:projectSlug" component={Project} />
+        <Route path="/skills" component={Skills} />
+        <Route path="/skill/:skillSlug" component={Skill} />
       </Switch>
     </ErrorBoundary>
   );
