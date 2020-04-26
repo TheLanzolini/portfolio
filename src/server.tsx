@@ -92,6 +92,7 @@ server
             ${helmet.meta.toString()}
             ${helmet.link.toString()}
             ${styleTags}
+            <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Ubuntu:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet" />
             <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
             ${
               assets.client.css
