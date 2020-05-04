@@ -30,6 +30,7 @@
 - [] Redux
 - [] favicon
 - [] styled FE error page
+- [] dark mode
 
 #### BE Infra
 

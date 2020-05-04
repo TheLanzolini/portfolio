@@ -19,7 +19,7 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  padding: 2rem;
+  padding: 2rem 10%;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -90,6 +90,11 @@ const Home = () => {
           </Tagline>
         </Overlay>
       </Hero>
+      <div>
+        {new Array(100).fill('Lorem ipsum dolor sit amet').map((i, index) => (
+          <div key={index}>{i}</div>
+        ))}
+      </div>
     </Layout>
   );
 };
