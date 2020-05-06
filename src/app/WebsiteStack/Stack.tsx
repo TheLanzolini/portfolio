@@ -1,13 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useEventListener } from '../utils/use-event-listener';
 import { Slice } from './Slice';
 
 const OuterStack = styled.div`
-  position: absolute;
-  padding-bottom: 2000px;
-  overflow: hidden;
-  width: 1100px;
+  // position: absolute;
+  // padding-bottom: 2000px;
+  // overflow: hidden;
+  // width: 1100px;
 `;
 
 const StyledStack = styled.div`
@@ -21,21 +20,49 @@ const totalHeight = process.browser
 
 export const Stack = () => {
   const [progress, setProgress] = useState(0);
-  const handler = useCallback(
-    (e) => {
-      if (totalHeight !== null) {
-        setProgress(document.documentElement.scrollTop / totalHeight);
-      }
-    },
-    [setProgress]
-  );
+  const [expanded, setExpanded] = useState(false);
+  const [animating, setAnimating] = useState(false);
 
-  useEventListener('scroll', handler);
+  useEffect(() => {
+    if (animating) {
+      let rafId: number;
+      let timestamp: number | null = null;
+      let distance = 0;
+      const totalDistance = 100;
+      const speed = totalDistance / 20000; // time
+
+      const animate = (ts: number) => {
+        if (timestamp === null) {
+          timestamp = ts;
+        }
+        distance += speed * (ts - timestamp);
+        const accurateProgress = expanded ? 100 - distance : distance;
+        // make sure we don't go above 100 or below 0
+        const normalizedProgres =
+          accurateProgress > 100
+            ? 100
+            : accurateProgress < 0
+            ? 0
+            : accurateProgress;
+        if (distance > totalDistance) {
+          cancelAnimationFrame(rafId);
+          setProgress(normalizedProgres);
+          setAnimating(false);
+          setExpanded(!expanded);
+        } else {
+          rafId = requestAnimationFrame(animate);
+          setProgress(normalizedProgres);
+        }
+      };
+      rafId = requestAnimationFrame(animate);
+    }
+    // tslint:disable-next-line: align
+  }, [animating]);
 
   return (
     <OuterStack>
+      <div onClick={() => setAnimating(true)}>Click to Explore</div>
       <StyledStack>
-        &nbsp;
         {new Array(10).fill(null).map((_, i) => (
           <Slice key={i} progress={progress} offset={i} />
         ))}

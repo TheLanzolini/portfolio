@@ -10,3 +10,4 @@ declare module 'node-fetch';
 
 declare module '*.jpg';
 declare module '*.png';
+declare module '*.gif';
