@@ -11,6 +11,9 @@ const OuterStack = styled.div`
 
 const StyledStack = styled.div`
   position: relative;
+  width: 283px;
+  height: 283px;
+  margin: auto;
 `;
 
 const totalHeight = process.browser
@@ -29,7 +32,7 @@ export const Stack = () => {
       let timestamp: number | null = null;
       let distance = 0;
       const totalDistance = 100;
-      const speed = totalDistance / 20000; // time
+      const speed = 0.01;
 
       const animate = (ts: number) => {
         if (timestamp === null) {
@@ -61,10 +64,14 @@ export const Stack = () => {
 
   return (
     <OuterStack>
-      <div onClick={() => setAnimating(true)}>Click to Explore</div>
       <StyledStack>
         {new Array(10).fill(null).map((_, i) => (
-          <Slice key={i} progress={progress} offset={i} />
+          <Slice
+            onClick={i === 0 ? () => setAnimating(true) : null}
+            key={i}
+            progress={progress}
+            offset={i}
+          />
         ))}
       </StyledStack>
     </OuterStack>
